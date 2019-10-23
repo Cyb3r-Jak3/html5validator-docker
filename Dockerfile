@@ -16,5 +16,5 @@ RUN apt-get -qq update && \
     apt-get install -y git python3-pip default-jre
 
 RUN pip3 install setuptools
-RUN git clone https://github.com/jwhite1st/html5validator.git && ls && cd html5validator
-RUN python setup.py install
+RUN git clone https://github.com/jwhite1st/html5validator.git
+RUN cd html5validator && python setup.py install
