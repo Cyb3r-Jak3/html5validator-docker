@@ -1,7 +1,11 @@
 FROM python:3
 
+LABEL AUTHOR Jacob White <jake@jwhite.network>
+
 ARG BUILD_DATE
 ARG VCS_REF
+
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/jwhite1st/html5validator-docker.git" \
