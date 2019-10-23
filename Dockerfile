@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM python:3
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -13,5 +13,5 @@ RUN apt-get -qq update && \
     add-apt-repository ppa:openjdk-r/ppa && \
     apt-get -qq install -y openjdk-8-jre && \
     pip install setuptools
-RUN git clone https://github.com/jwhite1st/html5validator.git
-RUN python ./html5validator/setup.py install
+RUN git clone https://github.com/jwhite1st/html5validator.git && ls && cd html5validator
+RUN python setup.py install
