@@ -7,3 +7,7 @@ This is a docker container that I made to test the html code for [my website](ht
 ## To use
 
 You use this the same way you use any docker image. I use it for my gitlab pipelines and you can view example configuration of testing [here](https://github.com/jwhite1st/portfolio-website/blob/master/.gitlab-ci.yml).
+
+## Tags
+
+There are currently two tags for this image. Latest and pypi. The latest tag involves building html5validator from source and the pypi installs the packaged version.
