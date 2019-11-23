@@ -1,5 +1,4 @@
 name: Docker Image CI
-
 on:
   push:
     branches:
@@ -18,8 +17,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: elgohr/Publish-Docker-Github-Action@2.8
     - name: Publish Docker
+      uses: elgohr/Publish-Docker-Github-Action@2.8
       with:
         name: cyb3rjake3/html5validator
         username: ${{ secrets.DOCKER_USERNAME }}
