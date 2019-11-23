@@ -16,13 +16,13 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag cyb3rjak3/html5validator:self
   publish:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Publish Docker
-      - uses: elgohr/Publish-Docker-Github-Action@2.8
-        with:
-          name: cyb3rjake3/html5validator
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          cache: ${{ github.event_name != 'schedule' }}
-          snapshot: true
+    runs-on: ubuntu-latest
+    steps:
+    - uses: elgohr/Publish-Docker-Github-Action@2.8
+    - name: Publish Docker
+      with:
+        name: cyb3rjake3/html5validator
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        cache: ${{ github.event_name != 'schedule' }}
+        snapshot: true
