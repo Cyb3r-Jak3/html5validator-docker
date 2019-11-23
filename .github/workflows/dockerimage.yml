@@ -1,6 +1,12 @@
 name: Docker Image CI
 
-on: [push]
+on:
+  push:
+  branches:
+      - master
+      - pypi
+  schedule:
+    - cron: '0 2 * * 0' # Weekly on Sundays at 02:00
 
 jobs:
   build:
@@ -9,11 +15,13 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag cyb3rjak3/html5validator:self
+  publish:
     - name: Publish Docker
       uses: elgohr/Publish-Docker-Github-Action@2.8
       with:
         name: cyb3rjake3/html5validator
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        cache: ${{ github.event_name != 'schedule' }}
         snapshot: true
 
