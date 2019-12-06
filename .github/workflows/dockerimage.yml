@@ -12,13 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build Self Docker
-      run: docker build . --file Dockerfile-Self --tag cyb3rjak3/html5validator:self
+      run: docker build . --file DockerFile-Self --tag cyb3rjak3/html5validator:self
   build_pypi:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Build Self Docker
-      run: docker build . --file Dockerfile-PyPi --tag cyb3rjak3/html5validator:pypi
+      run: docker build . --file DockerFile-PyPi --tag cyb3rjak3/html5validator:pypi
   publish_self:
     needs: build_self
     runs-on: ubuntu-latest
