@@ -37,6 +37,12 @@ jobs:
     needs: build_pypi
     runs-on: ubuntu-latest
     steps:
+    - name: Debugging
+      uses: debian:stable
+      run: |
+        ls /github/workspace/
+        ls .
+        find . -name "DockerFile-PyPi"
     - name: Publish Docker
       uses: jerray/publish-docker-action@v1.0.3
       with:
