@@ -7,7 +7,7 @@ on:
     - cron: '0 2 * * 0' # Weekly on Sundays at 02:00
 
 jobs:
-  build_self:
+  build_source:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -17,31 +17,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Build Self Docker
+    - name: Build Source Docker
       run: docker build . --file DockerFile-PyPi --tag cyb3rjak3/html5validator:pypi
-  publish_self:
-    needs: build_self
+  publish_source:
+    needs: build_source
     runs-on: ubuntu-latest
     steps:
     - name: Publish Docker
-      uses: elgohr/Publish-Docker-Github-Action@2.8
+      uses: jerray/publish-docker-action@v1.0.3
       with:
         name: cyb3rjak3/html5validator
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        dockerfile: DockerFile-Source
-        snapshot: true
+        file: DockerFile-Source
+        tags: source
         cache: ${{ github.event_name != 'schedule' }}
   publish_pypi:
     needs: build_pypi
     runs-on: ubuntu-latest
     steps:
     - name: Publish Docker
-      uses: elgohr/Publish-Docker-Github-Action@2.8
+      uses: jerray/publish-docker-action@v1.0.3
       with:
         name: cyb3rjak3/html5validator
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        dockerfile: DockerFile-PyPi
-        snapshot: true
+        file: DockerFile-PyPi
+        tags: latest,pypi
         cache: ${{ github.event_name != 'schedule' }}

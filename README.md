@@ -10,4 +10,4 @@ You use this the same way you use any docker image. I use it for my GitLab pipel
 
 ## Tags
 
-There are currently two tags for this image, source and pypi. The source tag involves building html5validator from source and the pypi installs the packaged version. The pypi tag is more stable than the source branch.
+There are currently two tags for this image, source and pypi. The source tag involves building html5validator from source and the pypi installs the packaged version. The pypi tag is more stable than the source branch, thus it is the latest tag.
