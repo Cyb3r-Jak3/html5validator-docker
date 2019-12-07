@@ -31,6 +31,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         file: DockerFile-Source
         tags: source
+        repository: cyb3rjak3/html5validator
         cache: ${{ github.event_name != 'schedule' }}
   publish_pypi:
     needs: build_pypi
@@ -43,5 +44,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         file: DockerFile-PyPi
+        repository: cyb3rjak3/html5validator
         tags: latest,pypi
         cache: ${{ github.event_name != 'schedule' }}
