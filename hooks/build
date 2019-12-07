@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# https://medium.com/microscaling-systems/labelling-automated-builds-on-docker-hub-f3d073fb8e1#.yldbwesu7
+
+echo "Build hook running"
+docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+             --build-arg VCS_REF=`git rev-parse --short HEAD` \
+             -t $IMAGE_NAME .
