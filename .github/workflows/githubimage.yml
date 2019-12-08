@@ -15,7 +15,7 @@ jobs:
       run: |
         docker login docker.pkg.github.com --username cyb3r-jak3  -p ${{ secrets.GITHUB_TOKEN }}
         docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest  
-        docker build --file DockerFile-Source --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest .
+        docker build --file Source.DockerFile --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest .
         docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest
 
   Build_Pypi:
@@ -26,5 +26,5 @@ jobs:
       run: |
         docker login docker.pkg.github.com --username cyb3r-jak3  -p ${{ secrets.GITHUB_TOKEN }}
         docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest 
-        docker build --file DockerFile-PyPi --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest .
+        docker build --file PyPi.DockerFile --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest .
         docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest

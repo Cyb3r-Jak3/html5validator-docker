@@ -14,7 +14,7 @@ jobs:
     - name: Build Source Docker
       run: |
         docker pull cyb3rjak3/html5validator:source || true
-        docker build --cache-from cyb3rjak3/html5validator:source --file DockerFile-Source --tag cyb3rjak3/html5validator:source .
+        docker build --cache-from cyb3rjak3/html5validator:source --file Source.DockerFile --tag cyb3rjak3/html5validator:source .
 
   Build_Pypi:
     runs-on: ubuntu-latest
@@ -23,24 +23,8 @@ jobs:
     - name: Build PyPi Docker
       run: |
         docker pull cyb3rjak3/html5validator:pypi || true
-        docker build --cache-from cyb3rjak3/html5validator:pypi --file DockerFile-PyPi --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest .
+        docker build --cache-from cyb3rjak3/html5validator:pypi --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest .
 
-
-  Publish_Pypi:
-    needs: Build_Pypi
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Publish PyPi
-      uses: jerray/publish-docker-action@v1.0.3
-      with:
-        name: cyb3rjak3/html5validator
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        file: DockerFile-PyPi
-        repository: cyb3rjak3/html5validator
-        tags: latest,pypi
-        cache: ${{ github.event_name != 'schedule' }}
 
   Publish_Source:
     needs: Build_Source
@@ -53,7 +37,23 @@ jobs:
         name: cyb3rjak3/html5validator
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        file: DockerFile-Source
+        file: Source.DockerFile
         tags: source
         repository: cyb3rjak3/html5validator
+        cache: ${{ github.event_name != 'schedule' }}
+
+  Publish_Pypi:
+    needs: Build_Pypi
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Publish PyPi
+      uses: jerray/publish-docker-action@v1.0.3
+      with:
+        name: cyb3rjak3/html5validator
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        file: PyPi.DockerFile
+        repository: cyb3rjak3/html5validator
+        tags: latest,pypi
         cache: ${{ github.event_name != 'schedule' }}
