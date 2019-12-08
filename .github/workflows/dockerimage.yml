@@ -7,53 +7,25 @@ on:
     - cron: '0 2 * * 0' # Weekly on Sundays at 02:00
 
 jobs:
-  Build_Source:
+  Source:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Build Source Docker
       run: |
-        docker pull cyb3rjak3/html5validator:source || true
+        echo ${{ secrets.DOCKER_USERNAME }} | docker login --username --password-stdin 
+        docker pull cyb3rjak3/html5validator:source
         docker build --cache-from cyb3rjak3/html5validator:source --file Source.DockerFile --tag cyb3rjak3/html5validator:source .
+        docker push cyb3rjak3/html5validator:source
 
-  Build_Pypi:
+  Pypi:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Build PyPi Docker
       run: |
-        docker pull cyb3rjak3/html5validator:pypi || true
+        echo ${{ secrets.DOCKER_USERNAME }} | docker login --username --password-stdin 
+        docker pull cyb3rjak3/html5validator:pypi
         docker build --cache-from cyb3rjak3/html5validator:pypi --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest .
-
-
-  Publish_Source:
-    needs: Build_Source
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Publish Source
-      uses: jerray/publish-docker-action@v1.0.3
-      with:
-        name: cyb3rjak3/html5validator
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        file: Source.DockerFile
-        tags: source
-        repository: cyb3rjak3/html5validator
-        cache: ${{ github.event_name != 'schedule' }}
-
-  Publish_Pypi:
-    needs: Build_Pypi
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Publish PyPi
-      uses: jerray/publish-docker-action@v1.0.3
-      with:
-        name: cyb3rjak3/html5validator
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        file: PyPi.DockerFile
-        repository: cyb3rjak3/html5validator
-        tags: latest,pypi
-        cache: ${{ github.event_name != 'schedule' }}
+        docker push cyb3rjak3/html5validator:latest
+        docker push cyb3rjak3/html5validator:pypi
