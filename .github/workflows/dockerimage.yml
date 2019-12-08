@@ -12,16 +12,18 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build Source Docker
-      run: docker build . --file DockerFile-Source --tag cyb3rjak3/html5validator:source
+      run: |
+        docker pull cyb3rjak3/html5validator:source || true
+        docker build --cache-from cyb3rjak3/html5validator:source --file DockerFile-Source --tag cyb3rjak3/html5validator:source .
 
   build_pypi:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Build Source Docker
+    - name: Build PyPi Docker
       run: |
         docker pull cyb3rjak3/html5validator:pypi || true
-        docker build --cache-from $CI_REGISTRY_IMAGE:latest --file DockerFile-PyPi --tag cyb3rjak3/html5validator:pypi .
+        docker build --cache-from cyb3rjak3/html5validator:pypi --file DockerFile-PyPi --tag cyb3rjak3/html5validator:pypi .
         
 
 
@@ -30,6 +32,7 @@ jobs:
     needs: build_source
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Publish Docker
       uses: jerray/publish-docker-action@v1.0.3
       with:
@@ -46,11 +49,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Debugging
-      run: |
-        find . -print 
-        find . -name "DockerFile-PyPi"
-
     - name: Publish Docker
       uses: jerray/publish-docker-action@v1.0.3
       with:
