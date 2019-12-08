@@ -14,9 +14,9 @@ jobs:
     - name: Build Source
       run: |
         docker login docker.pkg.github.com --username cyb3r-jak3  -p ${{ secrets.GITHUB_TOKEN }}
-        docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:source 
-        docker build --file DockerFile-Source --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:source --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:source .
-        docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:source
+        #docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:source  --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:source
+        docker build --file DockerFile-Source --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:source .
+        docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest
 
   Build_Pypi:
     runs-on: ubuntu-latest
@@ -25,7 +25,6 @@ jobs:
     - name: Build PyPi
       run: |
         docker login docker.pkg.github.com --username cyb3r-jak3  -p ${{ secrets.GITHUB_TOKEN }}
-        docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:pypi
-        docker build --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:pypi --file DockerFile-PyPi --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:pypi  --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:latest .
-        docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:pypi
-        docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:latest
+        #docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:pypi --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator:pypi
+        docker build --file DockerFile-PyPi --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:pypi .
+        docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:pypi
