@@ -45,8 +45,8 @@ jobs:
     needs: build_pypi
     runs-on: ubuntu-latest
     steps:
-    - name: Debugging
     - uses: actions/checkout@v1
+    - name: Debugging
       run: |
         find . -print 
         find . -name "DockerFile-PyPi"
