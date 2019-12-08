@@ -23,7 +23,7 @@ jobs:
     - name: Build PyPi Docker
       run: |
         docker pull cyb3rjak3/html5validator:pypi || true
-        docker build --cache-from cyb3rjak3/html5validator:pypi --file DockerFile-PyPi --tag cyb3rjak3/html5validator:pypi .
+        docker build --cache-from cyb3rjak3/html5validator:pypi --file DockerFile-PyPi --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest .
 
 
   Publish_Pypi:
