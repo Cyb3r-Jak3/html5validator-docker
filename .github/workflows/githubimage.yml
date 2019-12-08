@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build PyPi Docker
       run: |
-        docker login docker.pkg.github.com --username Cyb3r-Jak3  -p ${{ secrets.GITHUB_TOKEN }}
-        docker pull docker.pkg.github.com/Cyb3r-Jak3/html5validator-docker/:pypi
-        docker build --cache-from docker.pkg.github.com/Cyb3r-Jak3/html5validator-docker/:pypi --file DockerFile-PyPi --tag docker.pkg.github.com/Cyb3r-Jak3/html5validator-docker/:pypi  --tag docker.pkg.github.com/Cyb3r-Jak3/html5validator-docker/:latest .
-        docker push docker.pkg.github.com/Cyb3r-Jak3/html5validator-docker/
+        docker login docker.pkg.github.com --username cyb3r-jak3  -p ${{ secrets.GITHUB_TOKEN }}
+        docker pull docker.pkg.github.com/cyb3r-jak3 /html5validator-docker/:pypi
+        docker build --cache-from docker.pkg.github.com/cyb3r-jak3 /html5validator-docker/:pypi --file DockerFile-PyPi --tag docker.pkg.github.com/cyb3r-jak3 /html5validator-docker/:pypi  --tag docker.pkg.github.com/Cyb3r-Jak3/html5validator-docker/:latest .
+        docker push docker.pkg.github.com/cyb3r-jak3 /html5validator-docker/
