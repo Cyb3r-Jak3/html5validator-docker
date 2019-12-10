@@ -19,6 +19,8 @@ jobs:
         build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
         cache: ${{ github.event_name != 'schedule' }}
         tags: source
+        file: Source.DockerFile
+
     - uses: jerray/publish-docker-action@v1.0.3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -28,6 +30,7 @@ jobs:
         build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
         cache: ${{ github.event_name != 'schedule' }}
         tags: source
+        file: Source.DockerFile
 
   Pypi:
     runs-on: ubuntu-latest
@@ -41,6 +44,8 @@ jobs:
         build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
         cache: ${{ github.event_name != 'schedule' }}
         tags: latest,pypi
+        file: PyPi.DockerFile
+
     - uses: jerray/publish-docker-action@v1.0.3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -50,4 +55,4 @@ jobs:
         build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
         cache: ${{ github.event_name != 'schedule' }}
         tags: latest,pypi
-
+        file: PyPi.DockerFile
