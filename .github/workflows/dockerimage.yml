@@ -11,21 +11,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Build Source Docker
-      run: |
-        echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker pull cyb3rjak3/html5validator:source
-        docker build --cache-from cyb3rjak3/html5validator:source --file Source.DockerFile --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker push cyb3rjak3/html5validator:source
+    - uses: jerray/publish-docker-action@v1.0.3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: cyb3rjak3/html5validator
+        build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
+        cache: ${{ github.event_name != 'schedule' }}
+        tags: source
+    - uses: jerray/publish-docker-action@v1.0.3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: cyb3rjak3/html5validator
+        registry: docker.pkg.github.com
+        build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
+        cache: ${{ github.event_name != 'schedule' }}
+        tags: source
 
   Pypi:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Build PyPi Docker
-      run: |
-        echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker pull cyb3rjak3/html5validator:pypi
-        docker build --cache-from cyb3rjak3/html5validator:pypi --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker push cyb3rjak3/html5validator:latest
-        docker push cyb3rjak3/html5validator:pypi
+    - uses: jerray/publish-docker-action@v1.0.3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: cyb3rjak3/html5validator
+        build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
+        cache: ${{ github.event_name != 'schedule' }}
+        tags: latest,pypi
+    - uses: jerray/publish-docker-action@v1.0.3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: cyb3rjak3/html5validator
+        registry: docker.pkg.github.com
+        build_args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`,VCS_REF=`git rev-parse --short HEAD`
+        cache: ${{ github.event_name != 'schedule' }}
+        tags: latest,pypi
+
