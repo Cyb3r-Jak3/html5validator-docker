@@ -1,0 +1,30 @@
+name: GitHub CI
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 2 * * 0' # Weekly on Sundays at 02:00
+
+jobs:
+  Source:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build Source
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username cyb3r-jak3  --password-stdin
+        docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest  
+        docker build --file Source.DockerFile --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest
+
+  Pypi:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build PyPi
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username cyb3r-jak3  --password-stdin
+        docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest 
+        docker build --file PyPi.DockerFile --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest --cache-from docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest
