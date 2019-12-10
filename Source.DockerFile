@@ -2,6 +2,7 @@ FROM python:3
 
 LABEL AUTHOR Jacob White <jake@jwhite.network>
 
+ENV DEBIAN_FRONTEND noninteractive
 ARG BUILD_DATE
 ARG VCS_REF
 
