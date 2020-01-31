@@ -13,7 +13,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 RUN apt-get -q update \
     && apt-get install -y git python3-pip default-jre \
     && pip3 install setuptools \
-    && git clone https://github.com/Cyb3r-Jak3/html5validator.git \
+    && git clone https://github.com/svenkreiss/html5validator.git \
     && cd html5validator \
     && python setup.py install \
     && cd .. \
