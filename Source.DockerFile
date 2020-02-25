@@ -10,7 +10,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.schema-version="1.0.0-rc1"
 
-RUN apt-get -q update \
+RUN mkdir -p /usr/share/man/man1/ \
+    && apt-get -q update \
     && apt-get install -y git python3-pip default-jre \
     && pip3 install setuptools \
     && git clone https://github.com/svenkreiss/html5validator.git \

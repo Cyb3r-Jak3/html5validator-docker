@@ -11,6 +11,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.schema-version="1.0.0-rc1"
 
 
-RUN apt-get -qq update \
+RUN mkdir -p /usr/share/man/man1/ \
+    && apt-get -qq update \
     && apt-get install -qq git python3-pip default-jre \
     && pip install html5validator
