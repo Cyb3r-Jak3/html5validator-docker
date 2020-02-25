@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3-slim
 LABEL AUTHOR Cyb3r Jak3
 
 ENV DEBIAN_FRONTEND noninteractive
