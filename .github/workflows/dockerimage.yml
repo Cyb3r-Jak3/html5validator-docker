@@ -4,13 +4,13 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 2 * * 0' # Weekly on Sundays at 02:00
+    - cron: '0 1 * * 0'
 
 jobs:
   Source:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Build Source Docker
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
@@ -21,7 +21,7 @@ jobs:
   Pypi:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Build PyPi Docker
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin

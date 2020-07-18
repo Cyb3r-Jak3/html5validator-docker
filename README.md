@@ -9,6 +9,8 @@ This is a docker container that I made to test the HTML code for [my website](ht
 
 There are packages available through GitHub or Docker Hub.
 
+For ease of use in GitHub, check out my [Github Action](https://github.com/marketplace/actions/html5-validator)
+
 ## To use
 
 ### Docker
