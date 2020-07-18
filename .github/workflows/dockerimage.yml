@@ -15,7 +15,7 @@ jobs:
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker pull cyb3rjak3/html5validator:source
-        docker build --cache-from cyb3rjak3/html5validator:source --file Source.DockerFile --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Source.DockerFile --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         docker push cyb3rjak3/html5validator:source
 
   Pypi:
@@ -26,6 +26,6 @@ jobs:
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker pull cyb3rjak3/html5validator:pypi
-        docker build --cache-from cyb3rjak3/html5validator:pypi --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         docker push cyb3rjak3/html5validator:latest
         docker push cyb3rjak3/html5validator:pypi

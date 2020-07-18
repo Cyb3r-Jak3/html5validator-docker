@@ -1,7 +1,6 @@
 FROM python:3-slim
 LABEL AUTHOR Cyb3r Jak3
 
-ENV DEBIAN_FRONTEND noninteractive
 ARG BUILD_DATE
 ARG VCS_REF
 
@@ -13,5 +12,5 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
-    && apt-get install -qq git python3-pip default-jre \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -qq git python3-pip default-jre \
     && pip install html5validator
