@@ -37,6 +37,5 @@ jobs:
     - name: Build Experimental For Docker
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-#        docker pull cyb3rjak3/html5validator:experimental
         docker build --file Experimental.DockerFile --tag cyb3rjak3/html5validator:experimental --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         docker push cyb3rjak3/html5validator:experimental
