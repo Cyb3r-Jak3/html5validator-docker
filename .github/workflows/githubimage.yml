@@ -36,5 +36,6 @@ jobs:
     - name: Build Experimental
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username cyb3r-jak3  --password-stdin
+        docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest  
         docker build --file Experimental.DockerFile --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest
