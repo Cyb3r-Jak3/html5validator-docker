@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Source Docker
+    - name: Build Source For Docker
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker pull cyb3rjak3/html5validator:source
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build PyPi Docker
+    - name: Build PyPi For  Docker
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker pull cyb3rjak3/html5validator:pypi
@@ -34,7 +34,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
-      - name: Build Experimental Docker
+      - name: Build Experimental For Docker
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
           docker pull cyb3rjak3/html5validator:experimental
