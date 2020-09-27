@@ -12,5 +12,6 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -qq git python3-pip default-jre \
-    && pip install html5validator
+    && DEBIAN_FRONTEND=noninteractive apt-get install -qq python3-pip default-jre \
+    && rm -rf /var/lib/apt/lists/*
+RUN pip --no-cache-dir install html5validator \
