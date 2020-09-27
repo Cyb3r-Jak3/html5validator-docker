@@ -33,8 +33,14 @@ To use the source image:
 docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest
 ```
 
+To use the experimental image:  
+
+```bash
+docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest
+```
+
 **Important:** There is a package that is just html5validator. **DO NOT USE IT** It was made when I was testing it and I am unable to delete it.
 
 ## Tags
 
-There are currently two tags for this image, self, and PyPI. The self tag involves building html5validator from source and the PyPI installs the packaged version. The PyPi tag is more stable than the source branch, thus it is the latest tag.
+There are currently three tags for this image: self, pypi, and experimental. The self tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag.
