@@ -42,8 +42,8 @@ jobs:
           run: docker build --file Experimental.DockerFile --tag cyb3rjak3/html5validator:experimental --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
 
     Experimental=Alpine:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
-      - name: Build Experimental-Alpine Docker
-        run: docker build --file Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Build Experimental-Alpine Docker
+          run: docker build --file Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
