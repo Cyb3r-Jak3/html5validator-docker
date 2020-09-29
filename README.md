@@ -13,6 +13,10 @@ For ease of use in GitHub, check out my [Github Action](https://github.com/marke
 
 ## To use
 
+Currently the default images are based off of `python3-slim` there are images available using `python3.6-alpine3.12` if a smaller size is desired. Once there is enough testing then I will switch the default images over to alpine based ones.
+
+To use the alpine based images add `-alpine` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` become `cyb3rjak3/html5validator:latest-alpine`.
+
 ### Docker
 
 You use this the same way you use any docker image. I use it in my GitLab pipelines and you can view example configuration of testing [here](https://gitlab.com/Cyb3r-Jak3/portfolio-website/blob/master/.gitlab-ci.yml).
