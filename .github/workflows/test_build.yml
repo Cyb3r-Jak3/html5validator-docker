@@ -11,24 +11,39 @@ jobs:
         steps:
         - uses: actions/checkout@v2
         - name: Build Source Docker
-          run: |
-            docker build --file Source.DockerFile --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-            docker build --file Source-alpine.DockerFile --tag cyb3rjak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+          run: docker build --file Source.DockerFile --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+
+    Source-Alpine:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Build Source-Alpine Docker
+          run: docker build --file Source-alpine.DockerFile --tag cyb3rjak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
 
     Pypi:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
         - name: Build PyPi Docker
-          run: |
-            docker build --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-            docker build --file PyPi-alpine.DockerFile --tag cyb3rjak3/html5validator:pypi-alpine  --tag cyb3rjak3/html5validator:latest-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+          run: docker build --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+    
+    Pypi-Alpine:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Build PyPi-Alpine Docker
+          run: docker build --file PyPi-alpine.DockerFile --tag cyb3rjak3/html5validator:pypi-alpine  --tag cyb3rjak3/html5validator:latest-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
 
     Experimental:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v2
         - name: Build Experimental Docker
-          run: |
-            docker build --file Experimental.DockerFile --tag cyb3rjak3/html5validator:experimental --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-            docker build --file Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+          run: docker build --file Experimental.DockerFile --tag cyb3rjak3/html5validator:experimental --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+
+    Experimental=Alpine:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: Build Experimental-Alpine Docker
+        run: docker build --file Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
