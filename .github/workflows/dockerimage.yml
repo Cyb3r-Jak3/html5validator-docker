@@ -16,7 +16,8 @@ jobs:
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker pull cyb3rjak3/html5validator:source
         docker build --file Source.DockerFile --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker push cyb3rjak3/html5validator:source
+        docker build --file Source-alpine.DockerFile --tag cyb3rjak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker push cyb3rjak3/html5validator:source; docker push cyb3rjak3/html5validator:source-alpine
 
   Pypi:
     runs-on: ubuntu-latest
@@ -27,8 +28,9 @@ jobs:
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker pull cyb3rjak3/html5validator:pypi
         docker build --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker push cyb3rjak3/html5validator:latest
-        docker push cyb3rjak3/html5validator:pypi
+        docker build --file PyPi-alpine.DockerFile --tag cyb3rjak3/html5validator:pypi-alpine  --tag cyb3rjak3/html5validator:latest-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker push cyb3rjak3/html5validator:latest; docker push cyb3rjak3/html5validator:pypi
+        docker push cyb3rjak3/html5validator:latest-alpine; docker push cyb3rjak3/html5validator:pypi-alpine
 
   Experimental:
     runs-on: ubuntu-latest
@@ -39,4 +41,5 @@ jobs:
         echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker pull cyb3rjak3/html5validator:experimental
         docker build --file Experimental.DockerFile --tag cyb3rjak3/html5validator:experimental --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker push cyb3rjak3/html5validator:experimental
+        docker build --file Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker push cyb3rjak3/html5validator:experimental; docker push cyb3rjak3/html5validator:experimental-alpine

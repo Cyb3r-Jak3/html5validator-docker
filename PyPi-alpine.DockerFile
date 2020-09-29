@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.6-alpine3.12
 LABEL AUTHOR Cyb3r Jak3
 
 ARG BUILD_DATE
@@ -11,8 +11,10 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 
 RUN mkdir -p /usr/share/man/man1/ \
-    && apt-get -qq update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -qq python3-pip default-jre \
-    && rm -rf /var/lib/apt/lists/*
+    && apk update \
+    && apk upgrade \
+    && apk add --no-cache py-pip\
+         openjdk8-jre \
+    && rm -rf /var/cache/apk/*
 RUN pip --no-cache-dir install html5validator
 ENTRYPOINT [ "html5validator", "--help" ]
