@@ -41,4 +41,8 @@ jobs:
         docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest  
         docker build --file Experimental.DockerFile --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         docker build --file Experimental-alpine.DockerFile --tag docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+    - name: Run Experimental
+      run: |
+        docker run --rm -i docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest --root tests/valid
+
         docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest; docker push docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest-alpine
