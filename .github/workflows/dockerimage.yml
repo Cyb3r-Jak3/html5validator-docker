@@ -56,6 +56,6 @@ jobs:
     - name: Test Experimental Run
       run: |
         docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental html5validator --root /tests/valid
-        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine  html5validator--root /tests/valid
+        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine  html5validator --root /tests/valid
     - name: Push Experimental To Docker
       run: docker push cyb3rjak3/html5validator:experimental; docker push cyb3rjak3/html5validator:experimental-alpine
