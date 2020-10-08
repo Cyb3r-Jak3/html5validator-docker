@@ -19,8 +19,8 @@ jobs:
         docker build --file Source-alpine.DockerFile --tag cyb3rjak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
     - name: Test Source Run
       run: |
-        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source --root /tests/valid
-        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-alpine --root /tests/valid
+        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source html5validator --root /tests/valid
+        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-alpine html5validator --root /tests/valid
     - name: Push Source To Docker
       run: docker push cyb3rjak3/html5validator:source; docker push cyb3rjak3/html5validator:source-alpine
 
@@ -36,8 +36,8 @@ jobs:
         docker build --file PyPi-alpine.DockerFile --tag cyb3rjak3/html5validator:pypi-alpine  --tag cyb3rjak3/html5validator:latest-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
     - name: Test PyPi Run
       run: |
-        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest --root /tests/valid
-        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest-alpine --root /tests/valid
+        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest html5validator --root /tests/valid
+        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest-alpine html5validator --root /tests/valid
     - name: Push Pypi To Docker
       run: |
         docker push cyb3rjak3/html5validator:latest; docker push cyb3rjak3/html5validator:pypi
@@ -55,7 +55,7 @@ jobs:
         docker build --file Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
     - name: Test Experimental Run
       run: |
-        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental --root /tests/valid
-        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine --root /tests/valid
+        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental html5validator --root /tests/valid
+        docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine  html5validator--root /tests/valid
     - name: Push Experimental To Docker
       run: docker push cyb3rjak3/html5validator:experimental; docker push cyb3rjak3/html5validator:experimental-alpine
