@@ -37,7 +37,7 @@ The action is built using this image
 
 ```bash
 # Pull the image of your choosing. Only has to be done once
-docker pull html5validator:latest-alpine
+docker pull cyb3rjak3/html5validator:latest-alpine
 
 # If you code is in a relative directory called `public`
 docker run --rm -i -v $(pwd):/ cyb3rjak3/html5validator:latest-alpine html5validator --root /public
