@@ -22,4 +22,3 @@ RUN pip3 --no-cache-dir install setuptools \
     && python setup.py install \
     && cd .. \
     && rm -rf html5validator
-ENTRYPOINT [ "html5validator" ]

@@ -19,4 +19,3 @@ RUN command pip3 install setuptools \
     && python setup.py install \
     && cd .. \
     && rm -rf html5validator
-ENTRYPOINT [ "html5validator"]

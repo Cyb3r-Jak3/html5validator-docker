@@ -15,4 +15,3 @@ RUN mkdir -p /usr/share/man/man1/ \
     && DEBIAN_FRONTEND=noninteractive apt-get install -qq python3-pip default-jre \
     && rm -rf /var/lib/apt/lists/*
 RUN pip --no-cache-dir install html5validator
-ENTRYPOINT [ "html5validator" ]
