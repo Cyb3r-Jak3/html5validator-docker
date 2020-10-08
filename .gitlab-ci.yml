@@ -1,0 +1,9 @@
+stages:
+    - test
+  
+html_test:
+    stage: test
+    image: cyb3rjak3/html5validator:latest-alpine
+    script:
+      - html5validator --root tests/valid --also-check-css --log INFO 
+  
