@@ -16,7 +16,7 @@ jobs:
         - name: Build Source Docker
           run: docker build --file Source.DockerFile --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - name: Run Source Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source --root /tests/valid
+          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source html5validator --root /tests/valid
 
     Source-Alpine:
         runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
         - name: Build Source-Alpine Docker
           run: docker build --file Source-alpine.DockerFile --tag cyb3rjak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - name: Run Source-Alpine Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-alpine --root /tests/valid
+          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-alpine html5validator --root /tests/valid
 
     Pypi:
         runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
         - name: Build PyPi Docker
           run: docker build --file PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi  --tag cyb3rjak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - name: Run PyPi Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest --root /tests/valid
+          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest html5validator --root /tests/valid
     
     Pypi-Alpine:
         runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
         - name: Build PyPi-Alpine Docker
           run: docker build --file PyPi-alpine.DockerFile --tag cyb3rjak3/html5validator:pypi-alpine  --tag cyb3rjak3/html5validator:latest-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - name: Run PyPi-Alpine Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest-alpine --root /tests/valid
+          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest-alpine html5validator --root /tests/valid
 
     Experimental:
         runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
         - name: Build Experimental Docker
           run: docker build --file Experimental.DockerFile --tag cyb3rjak3/html5validator:experimental --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - name: Run Experimental Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental --root /tests/valid
+          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental html5validator --root /tests/valid
 
     Experimental-Alpine:
         runs-on: ubuntu-latest
@@ -61,4 +61,4 @@ jobs:
         - name: Build Experimental-Alpine Docker
           run: docker build --file Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - name: Run Experimental-Alpine Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine --root /tests/valid
+          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine html5validator --root /tests/valid
