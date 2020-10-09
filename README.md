@@ -39,8 +39,8 @@ The action is built using this image
 # Pull the image of your choosing. Only has to be done once
 docker pull cyb3rjak3/html5validator:latest-alpine
 
-# If you code is in a relative directory called `public`
-docker run --rm -i -v $(pwd):/ cyb3rjak3/html5validator:latest-alpine html5validator --root /public
+# If your code is in a relative directory called `public`
+docker run --rm -i -v $(pwd):/mnt -w /mnt cyb3rjak3/html5validator:latest-alpine html5validator --root public
 ```
 
 ## Sources
@@ -57,13 +57,13 @@ You use this the same way you use any docker image.
 docker pull cyb3rjak3/html5validator:latest
 ```
 
-To use the source image:  
+To use the source image:
 
 ```bash
 docker pull cyb3rjak3/html5validator:source
 ```
 
-To use the experimental image:  
+To use the experimental image:
 
 ```bash
 docker pull cyb3rjak3/html5validator:experimental
@@ -73,19 +73,19 @@ docker pull cyb3rjak3/html5validator:experimental
 
 If you want to use the GitHub packages, the naming scheme is different from the standard docker one ([Read more here](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-docker-for-use-with-github-packages#installing-a-package)). Additionally the versioning is different, thus there are three separate packages, html5validator-source and html5validator-PyPI, html5-validator-experimental.
 
-To use the PyPI image:  
+To use the PyPI image:
 
 ```bash
 docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest
 ```
 
-To use the source image:  
+To use the source image:
 
 ```bash
 docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest
 ```
 
-To use the experimental image:  
+To use the experimental image:
 
 ```bash
 docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest
