@@ -14,8 +14,8 @@ jobs:
       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
     - name: Build Source For GitHub
       run: |
-        docker build --file Source.DockerFile --tag  ghcr.io/cyb3r-jak3/html5validator:source --tag ghcr.io/cyb3r-jak3/html5validator:source-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker build --file Source-alpine.DockerFile --tag  ghcr.io/cyb3r-jak3/html5validator:source-alpine --tag  ghcr.io/cyb3r-jak3/html5validator:source-alpine-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Source/Source.DockerFile --tag  ghcr.io/cyb3r-jak3/html5validator:source --tag ghcr.io/cyb3r-jak3/html5validator:source-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Source/Source-alpine.DockerFile --tag  ghcr.io/cyb3r-jak3/html5validator:source-alpine --tag  ghcr.io/cyb3r-jak3/html5validator:source-alpine-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
     - name: Test Source
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:source html5validator --root /tests/valid --log DEBUG
@@ -33,8 +33,8 @@ jobs:
       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
     - name: Build PyPi For GitHub
       run: |
-        docker build --file PyPi.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:pypi --tag ghcr.io/cyb3r-jak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker build --file PyPi-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:pypi-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/PyPi/PyPi.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:pypi --tag ghcr.io/cyb3r-jak3/html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:pypi-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
     - name: Test PyPi
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:pypi html5validator --root /tests/valid --log DEBUG
@@ -53,8 +53,8 @@ jobs:
       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
     - name: Build Experimental For GitHub
       run: | 
-        docker build --file Experimental.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental --tag ghcr.io/cyb3r-jak3/html5validator:experimental-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker build --file Experimental-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental-alpine --tag ghcr.io/cyb3r-jak3/html5validator:experimental-alpine-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Experimental/Experimental.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental --tag ghcr.io/cyb3r-jak3/html5validator:experimental-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Experimental/Experimental-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental-alpine --tag ghcr.io/cyb3r-jak3/html5validator:experimental-alpine-$GITHUB_SHA --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
     - name: Test Experimental
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:experimental html5validator --root /tests/valid --log DEBUG
