@@ -42,8 +42,10 @@ jobs:
         docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest-alpine html5validator --root /tests/valid --log DEBUG
     - name: Push Pypi To Docker
       run: |
-        docker push cyb3rjak3/html5validator:latest; docker push cyb3rjak3/html5validator:pypi
-        docker push cyb3rjak3/html5validator:latest-alpine; docker push cyb3rjak3/html5validator:pypi-alpine
+        docker push cyb3rjak3/html5validator:latest
+        docker push cyb3rjak3/html5validator:pypi
+        docker push cyb3rjak3/html5validator:latest-alpine
+        docker push cyb3rjak3/html5validator:pypi-alpine
 
   Experimental:
     runs-on: ubuntu-latest

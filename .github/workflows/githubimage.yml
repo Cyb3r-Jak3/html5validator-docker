@@ -19,7 +19,7 @@ jobs:
     - name: Test Source
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:source html5validator --root /tests/valid --log DEBUG
-          docker run --rm -i -v $(pwd)/tests:/tests/ cyghcr.io/cyb3r-jak3/html5validator:source-alpine html5validator --root /tests/valid --log DEBUG
+          docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:source-alpine html5validator --root /tests/valid --log DEBUG
     - name: Push Source For GitHub
       run: |
         docker push ghcr.io/cyb3r-jak3/html5validator:source
@@ -58,7 +58,7 @@ jobs:
     - name: Test Experimental
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:experimental html5validator --root /tests/valid --log DEBUG
-          docker run --rm -i -v $(pwd)/tests:/tests/ cyghcr.io/cyb3r-jak3/html5validator:experimental-alpine html5validator --root /tests/valid --log DEBUG
+          docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:experimental-alpine html5validator --root /tests/valid --log DEBUG
     - name: Push Experimental to GitHub
       run: |
         docker push ghcr.io/cyb3r-jak3/html5validator:experimental
