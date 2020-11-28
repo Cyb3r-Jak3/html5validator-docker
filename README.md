@@ -47,7 +47,7 @@ docker run --rm -i -v $(pwd):/mnt -w /mnt cyb3rjak3/html5validator:latest-alpine
 
 You can pull the image from either Docker Hub or GitHub. Currently the default images are based off of `python3-slim` there are images available using `python3.6-alpine3.12` if a smaller size is desired. Once there is enough testing then I will switch the default images over to alpine based ones.
 
-To use the alpine based images add `-alpine` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` become `cyb3rjak3/html5validator:latest-alpine`.
+To use the alpine based images add `-alpine` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` becomes `cyb3rjak3/html5validator:latest-alpine`.
 
 ### Docker
 
@@ -71,28 +71,26 @@ docker pull cyb3rjak3/html5validator:experimental
 
 ### GitHub
 
-If you want to use the GitHub packages, the naming scheme is different from the standard docker one ([Read more here](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-docker-for-use-with-github-packages#installing-a-package)). Additionally the versioning is different, thus there are three separate packages, html5validator-source and html5validator-PyPI, html5-validator-experimental.
-
-To use the PyPI image:
+This project uses GitHub's container registry so you can use this the in a similar way to the docker images.
 
 ```bash
-docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-pypi:latest
+docker pull ghcr.io/cyb3rjak3/html5validator:latest
 ```
 
 To use the source image:
 
 ```bash
-docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-source:latest
+docker pull ghcr.io/cyb3rjak3/html5validator:source
 ```
 
 To use the experimental image:
 
 ```bash
-docker pull docker.pkg.github.com/cyb3r-jak3/html5validator-docker/html5validator-experimental:latest
+docker pull ghcr.io/cyb3rjak3/html5validator:experimental
 ```
 
-**Important:** There is a package that is just html5validator. **DO NOT USE IT** It was made when I was testing it and I am unable to delete it.
+Read more about GitHub's container registry [here](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry)
 
 ## Tags
 
-There are currently three tags for this image: self, pypi, and experimental. The self tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag.
+There are currently three tags for this image: source, pypi, and experimental. The source tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag. There has not been a PyPi release recently so certain feature might be missing from the pypi tag.
