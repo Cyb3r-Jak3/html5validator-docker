@@ -1,8 +1,13 @@
 stages:
+    - build
     - test
 
+include:
+  - template: Container-Scanning.gitlab-ci.yml
+
+
 .docker_build:
-    stage: test
+    stage: build
     image: docker:19.03.0-dind
     services:
         - name: docker:dind
