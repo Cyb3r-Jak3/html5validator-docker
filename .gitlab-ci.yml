@@ -1,7 +1,8 @@
 stages:
-    - build
-docker_build:
-    stage: build
+    - test
+
+.docker_build:
+    stage: test
     image: docker:19.03.0-dind
     services:
         - name: docker:dind
@@ -14,5 +15,17 @@ docker_build:
         DOCKER_TLS_CERTDIR: ""
     script:
         - docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest --root /tests/valid --log DEBUG
-  
+        - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest html5validator --root /tests/valid --log DEBUG
+
+Main-Test:
+    extends: .docker_build
+
+GitLab-Scanning:
+    extends: .docker_build
+    variables:
+        IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
+    before_script:
+        - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+    script:
+        - docker build --tag $IMAGE --file Dockerfiles/PyPi/PyPi-alpine.DockerFile  .
+        - docker push $IMAGE
