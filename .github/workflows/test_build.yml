@@ -14,7 +14,7 @@ jobs:
         steps:
         - uses: actions/checkout@v2
         - name: Build Source Docker
-          run: docker build --file Dockerfiles/Source/Source.DockerFile --tag cyb3rjak3/html5validator:source --tag cyb3rjak3/html5validator:source-$(git rev-parse --short HEAD) --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+          run: docker build --file Dockerfiles/Source/Source.DockerFile --tag cyb3rjak3/html5validator:source --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - name: Run Source Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source html5validator --root /tests/valid --log DEBUG
 
