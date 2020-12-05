@@ -34,7 +34,7 @@ jobs:
       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
     - name: Build PyPi For GitHub
       run: |
-        docker build --file Dockerfiles/PyPi/PyPi.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:latest --tag ghcr.io/cyb3r-jak3/html5validator:pypi --tag ghcr.io/cyb3r-jak3/html5validator:pypi-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/PyPi/PyPi.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:latest --tag ghcr.io/cyb3r-jak3/html5validator:latest-slim --tag ghcr.io/cyb3r-jak3/html5validator:pypi --tag ghcr.io/cyb3r-jak3/html5validator:pypi-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:latest-alpine --tag ghcr.io/cyb3r-jak3/html5validator:pypi-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
     - name: Test PyPi
       run: |
@@ -43,6 +43,7 @@ jobs:
     - name: Push PyPi to GitHub
       run: |
         docker push ghcr.io/cyb3r-jak3/html5validator:latest
+        docker push ghcr.io/cyb3r-jak3/html5validator:latest-slim
         docker push ghcr.io/cyb3r-jak3/html5validator:latest-alpine
         docker push ghcr.io/cyb3r-jak3/html5validator:pypi
         docker push ghcr.io/cyb3r-jak3/html5validator:pypi-slim
