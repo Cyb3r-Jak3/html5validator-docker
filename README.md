@@ -8,6 +8,10 @@ This is a docker image made to test HTML code. I developed it for [my website](h
 
 There are images available through GitHub or Docker Hub.
 
+## Notice of Change
+
+The default tags are going to switch from slim to alpine on December 20th. Read more [here](https://github.com/Cyb3r-Jak3/html5validator-docker/issues/16)
+
 ## To use
 
 First figure out the version you want then checkout out the [source](#sources)
