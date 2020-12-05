@@ -4,20 +4,14 @@ stages:
 
 include:
   - template: Container-Scanning.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
 
 
 .docker_build:
     stage: build
-    image: docker:19.03.0-dind
+    image: docker:19.03.12
     services:
-        - name: docker:dind
-          entrypoint: ["env", "-u", "DOCKER_HOST"]
-          command: ["dockerd-entrypoint.sh"]
-    variables:
-        DOCKER_HOST: tcp://docker:2375/
-        DOCKER_DRIVER: overlay2
-        # See https://github.com/docker-library/docker/pull/166
-        DOCKER_TLS_CERTDIR: ""
+        - docker:19.03.12-dind
     script:
         - docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
         - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest html5validator --root /tests/valid --log DEBUG

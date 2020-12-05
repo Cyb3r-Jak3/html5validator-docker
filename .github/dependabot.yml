@@ -1,7 +1,8 @@
 version: 2
 updates:
   - package-ecosystem: "docker"
-    directory: "/"
+  # Can only list one directory and the PyPi tags are the main ones
+    directory: "/Dockerfiles/Pypi"
     schedule:
       interval: "weekly"
     assignees:
