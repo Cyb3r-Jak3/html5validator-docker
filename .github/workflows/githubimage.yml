@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
   schedule:
     - cron: '0 1 * * 0'
 jobs:
@@ -10,17 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Source For GitHub
+
+    - name: Login To GitHub
       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-    - name: Build Source For GitHub
+
+    - name: Build Source
       run: |
-        docker build --file Dockerfiles/Source/Source.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:source --tag ghcr.io/cyb3r-jak3/html5validator:source-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker build --file Dockerfiles/Source/Source-alpine.DockerFile --tag  ghcr.io/cyb3r-jak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Source/Source.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:source-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Source/Source-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:source --tag ghcr.io/cyb3r-jak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+
     - name: Test Source
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:source-slim html5validator --root /tests/valid --log DEBUG
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:source-alpine html5validator --root /tests/valid --log DEBUG
-    - name: Push Source For GitHub
+
+    - name: Push To GitHub
       run: |
         docker push ghcr.io/cyb3r-jak3/html5validator:source
         docker push ghcr.io/cyb3r-jak3/html5validator:source-slim
@@ -30,41 +37,80 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Setup PyPi For GitHub
+
+    - name: Login to GitHub
       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-    - name: Build PyPi For GitHub
+
+    - name: Build PyPi
       run: |
-        docker build --file Dockerfiles/PyPi/PyPi.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:latest --tag ghcr.io/cyb3r-jak3/html5validator:latest-slim --tag ghcr.io/cyb3r-jak3/html5validator:pypi --tag ghcr.io/cyb3r-jak3/html5validator:pypi-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:latest-alpine --tag ghcr.io/cyb3r-jak3/html5validator:pypi-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/PyPi/PyPi.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:latest-slim --tag ghcr.io/cyb3r-jak3/html5validator:pypi-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:pypi --tag ghcr.io/cyb3r-jak3/html5validator:latest --tag ghcr.io/cyb3r-jak3/html5validator:latest-alpine --tag ghcr.io/cyb3r-jak3/html5validator:pypi-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+  
     - name: Test PyPi
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:pypi-slim html5validator --root /tests/valid --log DEBUG
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:pypi-alpine html5validator --root /tests/valid --log DEBUG
-    - name: Push PyPi to GitHub
+
+    - name: Push to GitHub
       run: |
-        docker push ghcr.io/cyb3r-jak3/html5validator:latest
-        docker push ghcr.io/cyb3r-jak3/html5validator:latest-slim
-        docker push ghcr.io/cyb3r-jak3/html5validator:latest-alpine
-        docker push ghcr.io/cyb3r-jak3/html5validator:pypi
-        docker push ghcr.io/cyb3r-jak3/html5validator:pypi-slim
-        docker push ghcr.io/cyb3r-jak3/html5validator:pypi-alpine
+          docker push ghcr.io/cyb3r-jak3/html5validator:latest
+          docker push ghcr.io/cyb3r-jak3/html5validator:latest-slim
+          docker push ghcr.io/cyb3r-jak3/html5validator:latest-alpine
+          docker push ghcr.io/cyb3r-jak3/html5validator:pypi
+          docker push ghcr.io/cyb3r-jak3/html5validator:pypi-slim
+          docker push ghcr.io/cyb3r-jak3/html5validator:pypi-alpine
 
   Experimental:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Experimental For GitHub
+
+    - name: Login to GitHub
       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-    - name: Build Experimental For GitHub
+
+    - name: Build Experimental
       run: | 
-        docker build --file Dockerfiles/Experimental/Experimental.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental --tag ghcr.io/cyb3r-jak3/html5validator:experimental-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        docker build --file Dockerfiles/Experimental/Experimental-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Experimental/Experimental.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental-slim --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        docker build --file Dockerfiles/Experimental/Experimental-alpine.DockerFile --tag ghcr.io/cyb3r-jak3/html5validator:experimental --tag ghcr.io/cyb3r-jak3/html5validator:experimental-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+
     - name: Test Experimental
       run: |
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:experimental-slim html5validator --root /tests/valid --log DEBUG
           docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/html5validator:experimental-alpine html5validator --root /tests/valid --log DEBUG
-    - name: Push Experimental to GitHub
+
+    - name: Push to GitHub
       run: |
         docker push ghcr.io/cyb3r-jak3/html5validator:experimental
         docker push ghcr.io/cyb3r-jak3/html5validator:experimental-slim
         docker push ghcr.io/cyb3r-jak3/html5validator:experimental-alpine
+
+
+ # FUTURE WORK Splitting the build and push into seperate jobs 
+  # Push_Images:
+  #   runs-on: ubuntu-latest
+  #   needs: [Experimental, Pypi, Source]
+  #   steps:
+  #     - name: Get Branch
+  #       run: |
+  #         echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+  #         docker images
+
+  #     - name: GitHub REGISTRY
+  #       if: github.event_name == 'push' && env.BRANCH == 'master'
+  #       run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+  #     - name: Push Images
+  #       if: github.event_name == 'push' && env.BRANCH == 'master'
+  #       run: |
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:latest
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:latest-slim
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:latest-alpine
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:pypi
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:pypi-slim
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:pypi-alpine
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:source
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:source-slim
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:source-alpine
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:experimental
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:experimental-slim
+  #         docker push ghcr.io/cyb3r-jak3/html5validator:experimental-alpine

@@ -8,10 +8,6 @@ This is a docker image made to test HTML code. I developed it for [my website](h
 
 There are images available through GitHub or Docker Hub.
 
-## Notice of Change
-
-The default tags are going to switch from slim to alpine on December 20th. Read more [here](https://github.com/Cyb3r-Jak3/html5validator-docker/issues/16)
-
 ## To use
 
 First figure out the version you want then checkout out the [source](#sources)
@@ -49,9 +45,9 @@ docker run --rm -i -v $(pwd):/mnt -w /mnt cyb3rjak3/html5validator:latest-alpine
 
 ## Sources
 
-You can pull the image from either Docker Hub or GitHub. Currently the default images are based off of `python3-slim` there are images available using `python3.6-alpine3.12` if a smaller size is desired. Once there is enough testing then I will switch the default images over to alpine based ones.
+You can pull the image from either Docker Hub or GitHub. Currently the default images are based off of `python3-alpine3.12` there are images available using `python3.6-slim`.
 
-To use the alpine based images add `-alpine` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` becomes `cyb3rjak3/html5validator:latest-alpine`.
+To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` becomes `cyb3rjak3/html5validator:latest-slim`.
 
 ### Docker
 
