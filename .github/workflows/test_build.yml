@@ -1,12 +1,9 @@
 name: Test Build
 
 on:
-    push:
-      branches-ignore:
-        - master
-    pull_request:
-      branches:
-        - master
+  push:
+    branches-ignore:
+      - master
   
 jobs:
     Source:
