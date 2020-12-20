@@ -1,8 +1,8 @@
 name: GitHub CI
 on:
   push:
-    branches:
-      - master
+    # branches:
+    #   - master
   pull_request:
     branches:
       - master
@@ -89,7 +89,9 @@ jobs:
     needs: [Experimental, Pypi, Source]
     steps:
       - name: Get Branch
-        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        run: |
+          echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          docker images
 
       - name: GitHub REGISTRY
         if: github.event_name == 'push' && env.BRANCH == 'master'
