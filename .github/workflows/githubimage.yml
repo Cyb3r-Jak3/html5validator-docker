@@ -92,9 +92,11 @@ jobs:
         run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: GitHub REGISTRY
+        if: github.event_name == 'push' && env.BRANCH == 'master'
         run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
       - name: Push Images
+        if: github.event_name == 'push' && env.BRANCH == 'master'
         run: |
           docker push ghcr.io/cyb3r-jak3/html5validator:latest
           docker push ghcr.io/cyb3r-jak3/html5validator:latest-slim
