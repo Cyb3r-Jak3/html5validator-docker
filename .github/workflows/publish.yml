@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - Dockerfiles/**
   schedule:
     - cron: '0 1 * * 0'
 
