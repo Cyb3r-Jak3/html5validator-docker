@@ -8,14 +8,22 @@ on:
     - cron: '0 1 * * 0'
 
 jobs:
-    Source:
+    Build&Push:
         runs-on: ubuntu-latest
         steps:
+
+        - name: Login To GitHub
+          run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+        - name: Login to Docker
+          run: echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
         - uses: actions/checkout@v2
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
+
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1
 
@@ -26,11 +34,11 @@ jobs:
           uses: actions/cache@v2
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
+            key: ${{ runner.os }}-buildx-${{ github.sha }}
             restore-keys: |
-              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
+              ${{ runner.os }}-buildx
         
-        - name: Build and push
+        - name: Source Slim
           uses: docker/build-push-action@v2
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
@@ -45,30 +53,7 @@ jobs:
               BUILD_DATE=${BUILD_DATE}
               VCS_REF=${VCS_REF}
 
-
-    Source-Alpine:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Setup ENV
-          run: |
-            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
-            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
-
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Cache Docker layers
-          uses: actions/cache@v2
-          with:
-            path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
-            restore-keys: |
-              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-        
-        - name: Build and push
+        - name: Source Alpine
           uses: docker/build-push-action@v2
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
@@ -85,30 +70,7 @@ jobs:
               BUILD_DATE=${BUILD_DATE}
               VCS_REF=${VCS_REF}
 
-
-    Pypi:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Setup ENV
-          run: |
-            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
-            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
-
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Cache Docker layers
-          uses: actions/cache@v2
-          with:
-            path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
-            restore-keys: |
-              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-        
-        - name: Build and push
+        - name: Pypi Slim
           uses: docker/build-push-action@v2
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
@@ -124,32 +86,8 @@ jobs:
             build-args: |
               BUILD_DATE=${BUILD_DATE}
               VCS_REF=${VCS_REF}
-        - name: Run PyPi Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest html5validator --root /tests/valid --log DEBUG
-    
-    Pypi-Alpine:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Setup ENV
-          run: |
-            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
-            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
 
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Cache Docker layers
-          uses: actions/cache@v2
-          with:
-            path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
-            restore-keys: |
-              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-        
-        - name: Build and push
+        - name: Pypi Alpine
           uses: docker/build-push-action@v2
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
@@ -164,35 +102,8 @@ jobs:
               ghcr.io/cyb3r-jak3/html5validator:latest-alpine
               ghcr.io/cyb3r-jak3/html5validator:pypi
               ghcr.io/cyb3r-jak3/html5validator:pypi-alpine
-            build-args: |
-              BUILD_DATE=${BUILD_DATE}
-              VCS_REF=${VCS_REF}
-        - name: Run PyPi-Alpine Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest-alpine html5validator --root /tests/valid --log DEBUG
 
-    Experimental:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Setup ENV
-          run: |
-            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
-            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
-
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Cache Docker layers
-          uses: actions/cache@v2
-          with:
-            path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
-            restore-keys: |
-              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-        
-        - name: Build and push
+        - name: Experimental Slim
           uses: docker/build-push-action@v2
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
@@ -207,30 +118,7 @@ jobs:
               BUILD_DATE=${BUILD_DATE}
               VCS_REF=${VCS_REF}
 
-
-    Experimental-Alpine:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Setup ENV
-          run: |
-            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
-            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
-
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
-
-        - name: Cache Docker layers
-          uses: actions/cache@v2
-          with:
-            path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
-            restore-keys: |
-              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-        
-        - name: Build and push
+        - name: Experimental Alpine
           uses: docker/build-push-action@v2
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
