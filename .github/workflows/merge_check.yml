@@ -1,4 +1,4 @@
-name: Test Build
+name: Check Merge
 
 on:
   pull_request:
