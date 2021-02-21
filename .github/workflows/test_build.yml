@@ -12,6 +12,7 @@ jobs:
     Source:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v2
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
@@ -29,8 +30,6 @@ jobs:
             key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-
-        - uses: actions/checkout@v2
         
         - name: Build and push
           uses: docker/build-push-action@v2
@@ -51,6 +50,7 @@ jobs:
     Source-Alpine:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v2
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
@@ -68,8 +68,6 @@ jobs:
             key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-
-        - uses: actions/checkout@v2
         
         - name: Build and push
           uses: docker/build-push-action@v2
@@ -90,6 +88,7 @@ jobs:
     Pypi:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v2
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
@@ -107,8 +106,6 @@ jobs:
             key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-
-        - uses: actions/checkout@v2
         
         - name: Build and push
           uses: docker/build-push-action@v2
@@ -130,6 +127,7 @@ jobs:
     Pypi-Alpine:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v2
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
@@ -147,8 +145,6 @@ jobs:
             key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-
-        - uses: actions/checkout@v2
         
         - name: Build and push
           uses: docker/build-push-action@v2
@@ -170,6 +166,7 @@ jobs:
     Experimental:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v2
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
@@ -187,8 +184,6 @@ jobs:
             key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-
-        - uses: actions/checkout@v2
         
         - name: Build and push
           uses: docker/build-push-action@v2
@@ -208,6 +203,7 @@ jobs:
     Experimental-Alpine:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v2
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
@@ -225,8 +221,6 @@ jobs:
             key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
-
-        - uses: actions/checkout@v2
         
         - name: Build and push
           uses: docker/build-push-action@v2
