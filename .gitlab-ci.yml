@@ -12,12 +12,13 @@ include:
     image: docker:19.03.12
     services:
         - docker:19.03.12-dind
-    script:
-        - docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
-        - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest html5validator --root /tests/valid --log DEBUG
+
 
 Main-Test:
     extends: .docker_build
+    script:
+        - docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest html5validator --root /tests/valid --log DEBUG
 
 GitLab-Scanning:
     extends: .docker_build
