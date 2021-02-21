@@ -22,9 +22,9 @@ jobs:
           uses: actions/cache@v2
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ GITHUB_WORKFLOW }}-${{ github.sha }}
+            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
-              ${{ runner.os }}-buildx-
+              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
 
         - uses: actions/checkout@v2
         
@@ -57,9 +57,9 @@ jobs:
           uses: actions/cache@v2
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ GITHUB_WORKFLOW }}-${{ github.sha }}
+            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
-              ${{ runner.os }}-buildx-
+              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
 
         - uses: actions/checkout@v2
         
@@ -92,9 +92,9 @@ jobs:
           uses: actions/cache@v2
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ GITHUB_WORKFLOW }}-${{ github.sha }}
+            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
-              ${{ runner.os }}-buildx-
+              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
 
         - uses: actions/checkout@v2
         
@@ -128,9 +128,9 @@ jobs:
           uses: actions/cache@v2
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ GITHUB_WORKFLOW }}-${{ github.sha }}
+            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
-              ${{ runner.os }}-buildx-
+              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
 
         - uses: actions/checkout@v2
         
@@ -164,9 +164,9 @@ jobs:
           uses: actions/cache@v2
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ GITHUB_WORKFLOW }}-${{ github.sha }}
+            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
-              ${{ runner.os }}-buildx-
+              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
 
         - uses: actions/checkout@v2
         
@@ -198,9 +198,9 @@ jobs:
           uses: actions/cache@v2
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ GITHUB_WORKFLOW }}-${{ github.sha }}
+            key: ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}-${{ github.sha }}
             restore-keys: |
-              ${{ runner.os }}-buildx-
+              ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
 
         - uses: actions/checkout@v2
         
