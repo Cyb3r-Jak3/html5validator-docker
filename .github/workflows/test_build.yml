@@ -12,6 +12,10 @@ jobs:
     Source:
         runs-on: ubuntu-latest
         steps:
+        - name: Setup ENV
+          run: |
+            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
+            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1
 
@@ -37,9 +41,9 @@ jobs:
             push: false
             file: Dockerfiles/Source/Source.DockerFile
             tags: cyb3rjak3/html5validator:source
-#            build-args: |
-#              BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-#              VCS_REF=`git rev-parse --short HEAD`
+            build-args: |
+              BUILD_DATE=${BUILD_DATE}
+              VCS_REF=$VCS_REF
 
         - name: Run Source Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source html5validator --root /tests/valid --log DEBUG
@@ -47,6 +51,10 @@ jobs:
     Source-Alpine:
         runs-on: ubuntu-latest
         steps:
+        - name: Setup ENV
+          run: |
+            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
+            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1
 
@@ -72,9 +80,9 @@ jobs:
             push: false
             file: Dockerfiles/Source/Source-alpine.DockerFile
             tags: cyb3rjak3/html5validator:source-alpine
-#            build-args: |
-#              BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-#              VCS_REF=`git rev-parse --short HEAD`
+            build-args: |
+              BUILD_DATE=${BUILD_DATE}
+              VCS_REF=$VCS_REF
 
         - name: Run Source-Alpine Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-alpine html5validator --root /tests/valid --log DEBUG
@@ -82,6 +90,10 @@ jobs:
     Pypi:
         runs-on: ubuntu-latest
         steps:
+        - name: Setup ENV
+          run: |
+            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
+            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1
 
@@ -109,15 +121,19 @@ jobs:
             tags: |
               cyb3rjak3/html5validator:pypi
               cyb3rjak3/html5validator:latest
-#            build-args: |
-#              BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-#              VCS_REF=`git rev-parse --short HEAD`
+            build-args: |
+              BUILD_DATE=${BUILD_DATE}
+              VCS_REF=$VCS_REF
         - name: Run PyPi Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest html5validator --root /tests/valid --log DEBUG
     
     Pypi-Alpine:
         runs-on: ubuntu-latest
         steps:
+        - name: Setup ENV
+          run: |
+            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
+            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1
 
@@ -145,15 +161,19 @@ jobs:
             tags: |
               cyb3rjak3/html5validator:pypi-alpine
               cyb3rjak3/html5validator:latest-alpine
-#            build-args: |
-#              BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-#              VCS_REF=`git rev-parse --short HEAD`
+            build-args: |
+              BUILD_DATE=${BUILD_DATE}
+              VCS_REF=$VCS_REF
         - name: Run PyPi-Alpine Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:latest-alpine html5validator --root /tests/valid --log DEBUG
 
     Experimental:
         runs-on: ubuntu-latest
         steps:
+        - name: Setup ENV
+          run: |
+            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
+            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1
 
@@ -179,15 +199,19 @@ jobs:
             push: false
             file: Dockerfiles/Experimental/Experimental.DockerFile
             tags: cyb3rjak3/html5validator:experimental
-#            build-args: |
-#              BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-#              VCS_REF=`git rev-parse --short HEAD`
+            build-args: |
+              BUILD_DATE=${BUILD_DATE}
+              VCS_REF=$VCS_REF
         - name: Run Experimental Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental html5validator --root /tests/valid --log DEBUG
 
     Experimental-Alpine:
         runs-on: ubuntu-latest
         steps:
+        - name: Setup ENV
+          run: |
+            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
+            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1
 
@@ -213,8 +237,8 @@ jobs:
             push: false
             file: Dockerfiles/Experimental/Experimental-alpine.DockerFile
             tags: cyb3rjak3/html5validator:experimental-alpine
-#            build-args: |
-#              BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-#              VCS_REF=`git rev-parse --short HEAD`
+            build-args: |
+              BUILD_DATE=${BUILD_DATE}
+              VCS_REF=$VCS_REF
         - name: Run Experimental-Alpine Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine html5validator --root /tests/valid --log DEBUG
