@@ -45,7 +45,7 @@ docker run --rm -i -v $(pwd):/mnt -w /mnt cyb3rjak3/html5validator:latest-alpine
 
 ## Sources
 
-You can pull the image from either Docker Hub or GitHub. Currently the default images are based off of `python3-alpine3.12` there are images available using `python3.6-slim`.
+You can pull the image from either Docker Hub or GitHub. Currently the default images are based off of `python:3.8.6-alpine3.12` there are images available using `python:3.8.6-slim`.
 
 To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` becomes `cyb3rjak3/html5validator:latest-slim`.
 
@@ -93,4 +93,4 @@ Read more about GitHub's container registry [here](https://docs.github.com/en/fr
 
 ## Tags
 
-There are currently three tags for this image: source, pypi, and experimental. The source tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag. There has not been a PyPi release recently so certain feature might be missing from the pypi tag.
+There are currently three tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag. There has not been a PyPi release recently so certain features might be missing from the pypi tag.

@@ -1,9 +1,20 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## 2021-02-21
+
+### Added
+
+- Support for amd64, arm64, and arm platforms
+
+### Changed
+
+- Swapped to docker build and push action
 
 ## 2020-12-20
 
@@ -18,6 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Experimental Docker file that uses my fork of html5validator
 
 ## [1.0.0] - 2020-07-17
+
 ### Added
 
 - First Release including Source and Pypi Dockerfiles
