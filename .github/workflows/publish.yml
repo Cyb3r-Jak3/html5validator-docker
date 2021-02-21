@@ -8,7 +8,7 @@ on:
     - cron: '0 1 * * 0'
 
 jobs:
-    Build&Push:
+    Build_Push:
         runs-on: ubuntu-latest
         steps:
 
