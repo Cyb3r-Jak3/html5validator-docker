@@ -37,11 +37,8 @@ jobs:
             cache-to: type=local,dest=/tmp/.buildx-cache
             push: false
             file: Dockerfiles/Source/Source.DockerFile
-            tags: |
-              cyb3rjak3/html5validator:source
-            build-args: |
-               BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`
-               VCS_REF=`git rev-parse --short HEAD`
+            tags: cyb3rjak3/html5validator:source
+            build-args: BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` VCS_REF=`git rev-parse --short HEAD`
 
         - name: Run Source Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source html5validator --root /tests/valid --log DEBUG
