@@ -11,4 +11,14 @@ updates:
         - "dependencies"
     reviewers:
         - "Cyb3r-Jak3"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+        - "Cyb3r-Jak3"
+    labels:
+        - "dependencies"
+    reviewers:
+        - "Cyb3r-Jak3"
     
