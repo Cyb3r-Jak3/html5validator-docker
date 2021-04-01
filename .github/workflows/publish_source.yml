@@ -36,9 +36,8 @@ jobs:
           uses: actions/cache@v2.1.4
           with:
             path: /tmp/.buildx-cache
-            key: ${{ runner.os }}-buildx-${{ github.sha }}
-            restore-keys: |
-              ${{ runner.os }}-buildx
+            key: buildx-source-${{ github.sha }}
+            restore-keys: buildx-source
         
         - name: Source Slim
           uses: docker/build-push-action@v2
