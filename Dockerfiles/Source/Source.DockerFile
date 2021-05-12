@@ -12,7 +12,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -q update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install –no-install-recommends -y git python3-pip default-jre \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y git python3-pip default-jre \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache-dir setuptools \
