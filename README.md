@@ -117,5 +117,5 @@ Read more about GitLab's container registry [here](https://docs.gitlab.com/ee/us
 
 There are currently three tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag.
 
-HTML5Validator latest tag: ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/svenkreiss/html5validator)
-Pypi Version: ![PyPI](https://img.shields.io/pypi/v/html5validator)
+HTML5Validator latest tag: [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/svenkreiss/html5validator)](https://github.com/svenkreiss/html5validator/releases/latest)  
+Pypi Version: [![PyPI](https://img.shields.io/pypi/v/html5validator)](https://pypi.org/project/html5validator/)
