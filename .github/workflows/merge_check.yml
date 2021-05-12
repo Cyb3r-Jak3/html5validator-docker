@@ -9,16 +9,16 @@ jobs:
     Source:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v1.1.0
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
+          uses: docker/setup-buildx-action@v1.3.0
 
         - name: Cache Docker layers
           uses: actions/cache@v2.1.5
@@ -29,7 +29,7 @@ jobs:
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
         
         - name: Build and push
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
@@ -47,16 +47,16 @@ jobs:
     Source-Alpine:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v1.1.0
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
+          uses: docker/setup-buildx-action@v1.3.0
 
         - name: Cache Docker layers
           uses: actions/cache@v2.1.5
@@ -67,7 +67,7 @@ jobs:
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
         
         - name: Build and push
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
@@ -85,16 +85,16 @@ jobs:
     Pypi:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v1.1.0
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
+          uses: docker/setup-buildx-action@v1.3.0
 
         - name: Cache Docker layers
           uses: actions/cache@v2.1.5
@@ -105,7 +105,7 @@ jobs:
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
         
         - name: Build and push
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
@@ -124,16 +124,16 @@ jobs:
     Pypi-Alpine:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v1.1.0
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
+          uses: docker/setup-buildx-action@v1.3.0
 
         - name: Cache Docker layers
           uses: actions/cache@v2.1.5
@@ -144,7 +144,7 @@ jobs:
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
         
         - name: Build and push
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
@@ -163,16 +163,16 @@ jobs:
     Experimental:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v1.1.0
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
+          uses: docker/setup-buildx-action@v1.3.0
 
         - name: Cache Docker layers
           uses: actions/cache@v2.1.5
@@ -183,7 +183,7 @@ jobs:
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
         
         - name: Build and push
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
@@ -200,16 +200,16 @@ jobs:
     Experimental-Alpine:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v1.1.0
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
+          uses: docker/setup-buildx-action@v1.3.0
 
         - name: Cache Docker layers
           uses: actions/cache@v2.1.5
@@ -220,7 +220,7 @@ jobs:
               ${{ runner.os }}-buildx-${{ env.GITHUB_WORKFLOW }}
         
         - name: Build and push
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache

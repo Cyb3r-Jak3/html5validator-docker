@@ -23,17 +23,17 @@ jobs:
         - name: Login to Docker
           run: echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - name: Setup ENV
           run: |
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
 
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
+          uses: docker/setup-qemu-action@v1.1.0
 
         - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v1
+          uses: docker/setup-buildx-action@v1.3.0
 
         - name: Cache Docker layers
           uses: actions/cache@v2.1.5
@@ -43,7 +43,7 @@ jobs:
             restore-keys: buildx-source
         
         - name: Source Slim
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
@@ -59,7 +59,7 @@ jobs:
               VCS_REF=${VCS_REF}
 
         - name: Source Alpine
-          uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2.4.0
           with:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
