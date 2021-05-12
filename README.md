@@ -91,6 +91,31 @@ docker pull ghcr.io/cyb3rjak3/html5validator:experimental
 
 Read more about GitHub's container registry [here](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry)
 
+### GitLab
+
+This project uses GitLabs's container registry so you can use this the in a similar way to the docker images.
+
+```bash
+docker pull registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest
+```
+
+To use the source image:
+
+```bash
+docker pull registry.gitlab.com/cyb3r-jak3/html5validator-docker:source
+```
+
+To use the experimental image:
+
+```bash
+docker pull registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental
+```
+
+Read more about GitLab's container registry [here](https://docs.gitlab.com/ee/user/packages/container_registry/index.html)
+
 ## Tags
 
-There are currently three tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag. There has not been a PyPi release recently so certain features might be missing from the pypi tag.
+There are currently three tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag.
+
+HTML5Validator latest tag: [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/svenkreiss/html5validator)](https://github.com/svenkreiss/html5validator/releases/latest)  
+Pypi Version: [![PyPI](https://img.shields.io/pypi/v/html5validator)](https://pypi.org/project/html5validator/)

@@ -7,7 +7,9 @@ ARG VCS_REF
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/Cyb3r-Jak3/html5validator-docker.git" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.schema-version="1.0.0-rc1"
+      org.label-schema.schema-version="1.0.0-rc1" \
+      org.opencontainers.image.source="https://github.com/Cyb3r-Jak3/html5validator-docker"
+
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apk update \
@@ -16,7 +18,8 @@ RUN mkdir -p /usr/share/man/man1/ \
          openjdk8-jre \
          git \
     && rm -rf /var/cache/apk/*
-RUN pip3 --no-cache-dir install setuptools \
+
+RUN pip --no-cache-dir install setuptools \
     && git clone https://github.com/svenkreiss/html5validator.git \
     && cd html5validator \
     && python setup.py install \

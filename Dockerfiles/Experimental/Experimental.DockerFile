@@ -7,12 +7,14 @@ ARG VCS_REF
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/Cyb3r-Jak3/html5validator-docker.git" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.schema-version="1.0.0-rc1"
+      org.label-schema.schema-version="1.0.0-rc1" \
+      org.opencontainers.image.source="https://github.com/Cyb3r-Jak3/html5validator-docker"
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -q update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y git python3-pip default-jre \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y git python3-pip default-jre \
     && rm -rf /var/lib/apt/lists/*
+
 RUN command pip3 install setuptools \
     && git clone https://github.com/Cyb3r-Jak3/html5validator.git \
     && cd html5validator \
