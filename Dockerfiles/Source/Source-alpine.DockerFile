@@ -19,7 +19,7 @@ RUN mkdir -p /usr/share/man/man1/ \
          git \
     && rm -rf /var/cache/apk/*
 
-RUN pip3 --no-cache-dir install setuptools \
+RUN pip --no-cache-dir install setuptools \
     && git clone https://github.com/svenkreiss/html5validator.git \
     && cd html5validator \
     && python setup.py install \
