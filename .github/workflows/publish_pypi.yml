@@ -17,6 +17,9 @@ jobs:
         - name: Login To GitHub
           run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
+        - name: Login To GitLab
+          run: echo ${{ secrets.GITLAB_TOKEN }} | docker login registry.gitlab.com -u ${{ secrets.GITLAB_USER }} --password-stdin
+
         - name: Login to Docker
           run: echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
@@ -52,6 +55,8 @@ jobs:
               ghcr.io/cyb3r-jak3/html5validator:pypi-slim
               cyb3rjak3/html5validator:pypi-slim
               cyb3rjak3/html5validator:latest-slim
+              registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-slim
+              registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-slim
             build-args: |
               BUILD_DATE=${BUILD_DATE}
               VCS_REF=${VCS_REF}
@@ -68,6 +73,12 @@ jobs:
               cyb3rjak3/html5validator:pypi-alpine
               cyb3rjak3/html5validator:pypi
               cyb3rjak3/html5validator:latest-alpine
+              cyb3rjak3/html5validator:latest
               ghcr.io/cyb3r-jak3/html5validator:latest-alpine
+              ghcr.io/cyb3r-jak3/html5validator:latest
               ghcr.io/cyb3r-jak3/html5validator:pypi
               ghcr.io/cyb3r-jak3/html5validator:pypi-alpine
+              registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-alpine
+              registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi
+              registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-alpine
+              registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest
