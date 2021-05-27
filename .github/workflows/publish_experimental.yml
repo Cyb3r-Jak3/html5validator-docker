@@ -6,6 +6,12 @@ on:
       - master
     paths:
       - Dockerfiles/Experimental/**
+      - .github/workflows/publish_experimental.yml
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - master
   schedule:
     - cron: '0 1 * * 0'
 
@@ -14,20 +20,37 @@ jobs:
         runs-on: ubuntu-latest
         steps:
 
+        - name: Login to Docker
+          uses: docker/login-action@v1
+          if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          with:
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+
         - name: Login To GitHub
-          run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          uses: docker/login-action@v1
+          if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.CR_PAT }}
 
         - name: Login To GitLab
-          run: echo ${{ secrets.GITLAB_TOKEN }} | docker login registry.gitlab.com -u ${{ secrets.GITLAB_USER }} --password-stdin
+          uses: docker/login-action@v1 
+          if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          with:
+            registry: registry.gitlab.com
+            username: ${{ secrets.GITLAB_USER }}
+            password: ${{ secrets.GITLAB_TOKEN }}
 
-        - name: Login to Docker
-          run: echo ${{ secrets.DOCKER_PASSWORD }} |  docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-
-        - uses: actions/checkout@v2.3.4
-        - name: Setup ENV
-          run: |
-            echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
-            echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
+        - name: Docker Meta
+          id: meta
+          uses: docker/metadata-action@v3
+          with:
+            images: cyb3rjak3/html5validator,ghcr.io/cyb3r-jak3/html5validator,registry.gitlab.com/cyb3r-jak3/html5validator-docker
+            labels: |
+              org.label-schema.vcs-url=https://github.com/Cyb3r-Jak3/html5validator-docker.git
+              maintainer=Cyb3r Jak3 jake@jwhite.network
 
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1.2.0
@@ -48,15 +71,14 @@ jobs:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
             cache-to: type=local,dest=/tmp/.buildx-cache
-            push: true
+            push: ${{ startsWith(github.ref, 'refs/tags/v') }}
             file: Dockerfiles/Experimental/Experimental.DockerFile
+            labels: ${{ steps.meta.outputs.labels }}
             tags: |
               cyb3rjak3/html5validator:experimental-slim
               ghcr.io/cyb3r-jak3/html5validator:experimental-slim
               registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim
-            build-args: |
-              BUILD_DATE=${BUILD_DATE}
-              VCS_REF=${VCS_REF}
+
 
         - name: Experimental Alpine
           uses: docker/build-push-action@v2.5.0
@@ -64,8 +86,9 @@ jobs:
             platforms: linux/amd64,linux/arm64,linux/arm
             cache-from: type=local,src=/tmp/.buildx-cache
             cache-to: type=local,dest=/tmp/.buildx-cache
-            push: true
+            push: ${{ startsWith(github.ref, 'refs/tags/v') }}
             file: Dockerfiles/Experimental/Experimental-alpine.DockerFile
+            labels: ${{ steps.meta.outputs.labels }}
             tags: |
               cyb3rjak3/html5validator:experimental-alpine
               cyb3rjak3/html5validator:experimental
@@ -73,7 +96,5 @@ jobs:
               ghcr.io/cyb3r-jak3/html5validator:experimental
               registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine
               registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental
-            build-args: |
-              BUILD_DATE=${BUILD_DATE}
-              VCS_REF=${VCS_REF}
+
 
