@@ -7,4 +7,4 @@ RUN mkdir -p /usr/share/man/man1/ \
 
 RUN pip --no-cache-dir install html5validator
 
-RUN apk del git py-pip
+RUN apk del py-pip

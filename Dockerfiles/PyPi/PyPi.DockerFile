@@ -7,5 +7,5 @@ RUN mkdir -p /usr/share/man/man1/ \
 
 RUN pip --no-cache-dir install html5validator
 
-RUN DEBIAN_FRONTEND=noninteractive apt remove -y git python3-pip \
+RUN DEBIAN_FRONTEND=noninteractive apt remove -y python3-pip \
     && apt autoremove -y
