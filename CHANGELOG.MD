@@ -6,12 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 <!-- ## [Unreleased] -->
 
+## 2021-05-27
+
+### Changed
+
+- Switched to using more GitHub actions to the build process
+
 ## 2021-05-12
 
 ### Added
 
 - GitLab container images
-
 
 ## 2021-02-21
 
