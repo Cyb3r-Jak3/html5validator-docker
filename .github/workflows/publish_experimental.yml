@@ -97,11 +97,4 @@ jobs:
               registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine
               registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental
 
-        - uses: actions/checkout@v2.3.4
-
-        - name: Run Experimental-Slim Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-slim html5validator --root /tests/valid --log DEBUG
-
-        - name: Run Experimental-Alpine Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine html5validator --root /tests/valid --log DEBUG
 

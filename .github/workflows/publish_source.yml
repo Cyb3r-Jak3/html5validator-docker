@@ -95,11 +95,3 @@ jobs:
               ghcr.io/cyb3r-jak3/html5validator:source-alpine
               registry.gitlab.com/cyb3r-jak3/html5validator-docker:source
               registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine
-
-        - uses: actions/checkout@v2.3.4
-
-        - name: Run Source-Slim Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-slim html5validator --root /tests/valid --log DEBUG
-
-        - name: Run Source-Alpine Docker
-          run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-alpine html5validator --root /tests/valid --log DEBUG

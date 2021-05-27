@@ -105,11 +105,3 @@ jobs:
             registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi
             registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-alpine
             registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest
-
-      - uses: actions/checkout@v2.3.4
-
-      - name: Run Pypi-Slim Docker
-        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:pypi-slim html5validator --root /tests/valid --log DEBUG
-
-      - name: Run Pypi-Alpine Docker
-        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:pypi-alpine html5validator --root /tests/valid --log DEBUG
