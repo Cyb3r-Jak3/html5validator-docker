@@ -15,7 +15,7 @@ jobs:
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1.1.0
+          uses: docker/setup-qemu-action@v1.2.0
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1.3.0
@@ -53,7 +53,7 @@ jobs:
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1.1.0
+          uses: docker/setup-qemu-action@v1.2.0
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1.3.0
@@ -91,7 +91,7 @@ jobs:
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1.1.0
+          uses: docker/setup-qemu-action@v1.2.0
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1.3.0
@@ -130,7 +130,7 @@ jobs:
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1.1.0
+          uses: docker/setup-qemu-action@v1.2.0
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1.3.0
@@ -169,7 +169,7 @@ jobs:
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1.1.0
+          uses: docker/setup-qemu-action@v1.2.0
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1.3.0
@@ -206,7 +206,7 @@ jobs:
             echo "BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"`" >> $GITHUB_ENV
             echo "VCS_REF=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1.1.0
+          uses: docker/setup-qemu-action@v1.2.0
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1.3.0
