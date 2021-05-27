@@ -1,20 +1,7 @@
 FROM python:3.8.6-alpine3.12
-LABEL AUTHOR Cyb3r Jak3
-
-ARG BUILD_DATE
-ARG VCS_REF
-
-LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.vcs-url="https://github.com/Cyb3r-Jak3/html5validator-docker.git" \
-      org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.schema-version="1.0.0-rc1" \
-      org.opencontainers.image.source="https://github.com/Cyb3r-Jak3/html5validator-docker"
-
 
 RUN mkdir -p /usr/share/man/man1/ \
-    && apk update \
-    && apk upgrade \
-    && apk add --no-cache py-pip\
+    && apk add --no-cache py-pip \
          openjdk8-jre \
          git \
     && rm -rf /var/cache/apk/*
@@ -24,4 +11,7 @@ RUN pip --no-cache-dir install setuptools \
     && cd html5validator \
     && python setup.py install \
     && cd .. \
-    && rm -rf html5validator
+    && rm -rf html5validator \
+    && pip uninstall --yes setuptools
+
+RUN apk del git py-pip
