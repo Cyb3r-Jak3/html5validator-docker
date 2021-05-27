@@ -49,8 +49,8 @@ jobs:
           with:
             images: cyb3rjak3/html5validator,ghcr.io/cyb3r-jak3/html5validator,registry.gitlab.com/cyb3r-jak3/html5validator-docker
             labels: |
-              org.label-schema.vcs-url="https://github.com/Cyb3r-Jak3/html5validator-docker.git"
-              maintainer="Cyb3r Jak3 jake@jwhite.network"
+              org.label-schema.vcs-url=https://github.com/Cyb3r-Jak3/html5validator-docker.git
+              maintainer=Cyb3r Jak3 jake@jwhite.network
 
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1.2.0
