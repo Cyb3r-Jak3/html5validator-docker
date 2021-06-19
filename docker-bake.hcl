@@ -2,6 +2,17 @@ variable "DEFAULT_TAG" {
   default = "html5validator:local"
 }
 
+group "release" {
+    targets = [
+        "source-slim-release",
+        "source-alpine-release",
+        "pypi-slim-release",
+        "pypi-alpine-release",
+        "experimental-slim",
+        "experimental-alpine"
+    ]
+}
+
 group "all" {
     targets = ["slim","pypi","experimental"]
 }
@@ -93,8 +104,63 @@ target "experimental-alpine" {
 // Special target: https://github.com/docker/metadata-action#bake-definition
 target "docker-metadata-action" {}
 
-target "image-all" {
-    inherits = ["source-slim", "source-alpine", "pypi-slim", "pypi-alpine", "experimental-slim", "experimental-alpine", "docker-metadata-action"]
+target "source-slim-release" {
+    inherits = ["source-slim", "docker-metadata-action"]
+    platforms = [
+        "linux/amd64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64",
+        "linux/386",
+        "linux/ppc64le",
+    ]
+}
+target "source-alpine-release" {
+    inherits = ["source-alpine", "docker-metadata-action"]
+    platforms = [
+        "linux/amd64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64",
+        "linux/386",
+        "linux/ppc64le",
+    ]
+}
+target "pypy-slim-release" {
+    inherits = ["pypi-slim", "docker-metadata-action"]
+    platforms = [
+        "linux/amd64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64",
+        "linux/386",
+        "linux/ppc64le",
+    ]
+}
+target "pypi-alpine-release" {
+    inherits = ["pypi-alpine","docker-metadata-action"]
+    platforms = [
+        "linux/amd64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64",
+        "linux/386",
+        "linux/ppc64le",
+    ]
+}
+target "experimental-slim-release" {
+    inherits = ["experimental-slim", "docker-metadata-action"]
+    platforms = [
+        "linux/amd64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64",
+        "linux/386",
+        "linux/ppc64le",
+    ]
+}
+target "experimental-alpine-release" {
+    inherits = ["experimental-alpine", "docker-metadata-action"]
     platforms = [
         "linux/amd64",
         "linux/arm/v6",
