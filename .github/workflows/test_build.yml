@@ -3,7 +3,7 @@ name: Test Build
 on: 
   push:
     paths:
-      - dockerfiles/**
+      - Dockerfiles/**
       - .github/workflows/test_build.yml
   
 jobs:
@@ -17,8 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
 
-      - name: Build ${{ matrix.buildType }}-${{ matrix.buildArch }}
-        run: docker build --file Dockerfiles/${{ matrix.buildType }}/${{ matrix.buildArch }}.Dockerfile --tag ${{ matrix.buildType }}:${{ matrix.buildArch }} .
+      - name: Build Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}
+        uses: docker/bake-action@v1.4.2
+        with:
+          files: |
+            ./docker-bake.hcl
+          targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
+          push: false
+          load: true
 
-      - name: Run Source-Alpine Docker
-        run: docker run --rm -i -v $(pwd)/tests:/tests/ ${{ matrix.buildType }}:${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
+      - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
+        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
