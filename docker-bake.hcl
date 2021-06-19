@@ -101,72 +101,38 @@ target "experimental-alpine" {
     ]
 
 }
+
 // Special target: https://github.com/docker/metadata-action#bake-definition
-target "docker-metadata-action" {}
+target "docker-metadata-action" {
+    platforms = [
+        "linux/amd64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64",
+        "linux/386",
+    ]
+}
 
 target "source-slim-release" {
     inherits = ["source-slim", "docker-metadata-action"]
-    platforms = [
-        "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/arm64",
-        "linux/386",
-        "linux/ppc64le",
-    ]
 }
+
 target "source-alpine-release" {
     inherits = ["source-alpine", "docker-metadata-action"]
-    platforms = [
-        "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/arm64",
-        "linux/386",
-        "linux/ppc64le",
-    ]
 }
+
 target "pypi-slim-release" {
     inherits = ["pypi-slim", "docker-metadata-action"]
-    platforms = [
-        "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/arm64",
-        "linux/386",
-        "linux/ppc64le",
-    ]
 }
+
 target "pypi-alpine-release" {
     inherits = ["pypi-alpine","docker-metadata-action"]
-    platforms = [
-        "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/arm64",
-        "linux/386",
-        "linux/ppc64le",
-    ]
 }
+
 target "experimental-slim-release" {
     inherits = ["experimental-slim", "docker-metadata-action"]
-    platforms = [
-        "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/arm64",
-        "linux/386",
-        "linux/ppc64le",
-    ]
 }
+
 target "experimental-alpine-release" {
     inherits = ["experimental-alpine", "docker-metadata-action"]
-    platforms = [
-        "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/arm64",
-        "linux/386",
-        "linux/ppc64le",
-    ]
 }
