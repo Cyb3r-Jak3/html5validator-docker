@@ -17,7 +17,7 @@ include:
 Main-Test:
     extends: .docker_build
     script:
-        - docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag html5validator:latest --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+        - docker build --file Dockerfiles/pypi/alpine.DockerFile --tag html5validator:latest .
         - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest html5validator --root /tests/valid --log DEBUG
 
 GitLab-Scanning:
@@ -27,5 +27,5 @@ GitLab-Scanning:
     before_script:
         - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     script:
-        - docker build --tag $IMAGE --file Dockerfiles/PyPi/PyPi-alpine.DockerFile  .
+        - docker build --tag $IMAGE --file Dockerfiles/pypi/alpine.DockerFile  .
         - docker push $IMAGE
