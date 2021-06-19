@@ -18,7 +18,7 @@ on:
 
 
 jobs:
-    Build_Push:
+    Publish:
         runs-on: ubuntu-latest
         steps:
 
