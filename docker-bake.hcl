@@ -18,7 +18,7 @@ group "experimental" {
 }
 
 target "source-slim" {
-    dockerfile = "./Dockerfiles/Source/slim.Dockerfile"
+    dockerfile = "./Dockerfiles/source/slim.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:source-slim",
         "ghcr.io/cyb3r-jak3/html5validator:source-slim",
@@ -27,7 +27,7 @@ target "source-slim" {
 }
 
 target "source-alpine" {
-    dockerfile = "./Dockerfiles/Source/alpine.Dockerfile"
+    dockerfile = "./Dockerfiles/source/alpine.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:source",
         "cyb3rjak3/html5validator:source-alpine",
@@ -40,7 +40,7 @@ target "source-alpine" {
 }
 
 target "pypi-slim" {
-    dockerfile = "./Dockerfiles/PyPi/slim.Dockerfile"
+    dockerfile = "./Dockerfiles/pypi/slim.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:latest-slim",
         "cyb3rjak3/html5validator:pypi-slim",
@@ -52,7 +52,7 @@ target "pypi-slim" {
 }
 
 target "pypi-alpine" {
-    dockerfile = "./Dockerfiles/PyPi/alpine.Dockerfile"
+    dockerfile = "./Dockerfiles/pypi/alpine.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:latest",
         "cyb3rjak3/html5validator:pypi",
@@ -70,7 +70,7 @@ target "pypi-alpine" {
 } 
 
 target "experimental-slim" {
-    dockerfile = "./Dockerfiles/Experimental/slim.Dockerfile"
+    dockerfile = "./Dockerfiles/experimental/slim.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:experimental-slim",
         "ghcr.io/cyb3r-jak3/html5validator:experimental-slim",
@@ -79,7 +79,7 @@ target "experimental-slim" {
 }
 
 target "experimental-alpine" {
-    dockerfile = "./Dockerfiles/Experimental/alpine.Dockerfile"
+    dockerfile = "./Dockerfiles/experimental/alpine.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:experimental",
         "cyb3rjak3/html5validator:experimental-alpine",
@@ -94,7 +94,7 @@ target "experimental-alpine" {
 target "docker-metadata-action" {}
 
 target "image-all" {
-    inherits = ["source-slim", "source-alpine", "pypi-slim", "pypi-alpine", "experimental-slim", "experimental-alpine"]
+    inherits = ["source-slim", "source-alpine", "pypi-slim", "pypi-alpine", "experimental-slim", "experimental-alpine", "docker-metadata-action"]
     platforms = [
         "linux/amd64",
         "linux/arm/v6",
