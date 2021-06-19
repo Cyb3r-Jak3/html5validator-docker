@@ -9,7 +9,7 @@ jobs:
         - uses: actions/checkout@v2.3.4
 
         - name: Build Source Docker
-          run: docker build --file Dockerfiles/Source/Source.DockerFile --tag cyb3rjak3/html5validator:source --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+          run: docker build --file Dockerfiles/Source/slim.Dockerfile --tag cyb3rjak3/html5validator:source --tag cyb3rjak3/html5validator:source --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
 
         - name: Run Source Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source html5validator --root /tests/valid --log DEBUG
@@ -20,7 +20,7 @@ jobs:
         - uses: actions/checkout@v2.3.4
 
         - name: Build Source-Alpine Docker
-          run: docker build --file Dockerfiles/Source/Source-alpine.DockerFile --tag cyb3rjak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
+          run: docker build --file Dockerfiles/Source/alpine.Dockerfile --tag cyb3rjak3/html5validator:source-alpine --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` --build-arg VCS_REF=`git rev-parse --short HEAD` .
   
         - name: Run Source-Alpine Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:source-alpine html5validator --root /tests/valid --log DEBUG
@@ -31,7 +31,7 @@ jobs:
         - uses: actions/checkout@v2.3.4
 
         - name: Build PyPi Docker
-          run: docker build --file Dockerfiles/PyPi/PyPi.DockerFile --tag cyb3rjak3/html5validator:pypi .
+          run: docker build --file Dockerfiles/PyPi/slim.Dockerfile --tag cyb3rjak3/html5validator:pypi .
 
         - name: Run PyPi Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:pypi html5validator --root /tests/valid --log DEBUG
@@ -42,7 +42,7 @@ jobs:
         - uses: actions/checkout@v2.3.4
 
         - name: Build PyPi-Alpine Docker
-          run: docker build --file Dockerfiles/PyPi/PyPi-alpine.DockerFile --tag cyb3rjak3/html5validator:pypi-alpine .
+          run: docker build --file Dockerfiles/PyPi/alpine.Dockerfile --tag cyb3rjak3/html5validator:pypi-alpine .
 
         - name: Run PyPi-Alpine Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:pypi-alpine html5validator --root /tests/valid --log DEBUG
@@ -53,7 +53,7 @@ jobs:
         - uses: actions/checkout@v2.3.4
 
         - name: Build Experimental Docker
-          run: docker build --file Dockerfiles/Experimental/Experimental.DockerFile --tag cyb3rjak3/html5validator:experimental .
+          run: docker build --file Dockerfiles/Experimental/slim.Dockerfile --tag cyb3rjak3/html5validator:experimental .
 
         - name: Run Experimental Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental html5validator --root /tests/valid --log DEBUG
@@ -64,7 +64,7 @@ jobs:
         - uses: actions/checkout@v2.3.4
 
         - name: Build Experimental-Alpine Docker
-          run: docker build --file Dockerfiles/Experimental/Experimental-alpine.DockerFile --tag cyb3rjak3/html5validator:experimental-alpine .
+          run: docker build --file Dockerfiles/Experimental/alpine.Dockerfile --tag cyb3rjak3/html5validator:experimental-alpine .
 
         - name: Run Experimental-Alpine Docker
           run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:experimental-alpine html5validator --root /tests/valid --log DEBUG
