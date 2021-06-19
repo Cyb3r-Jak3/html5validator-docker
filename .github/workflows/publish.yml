@@ -1,0 +1,64 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - Dockerfiles/**
+      - .github/workflows/publish.yml
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - master
+  schedule:
+    - cron: '0 1 * * 0'
+
+jobs:
+    Build_Push:
+        runs-on: ubuntu-latest
+        steps:
+
+        - name: Login to Docker
+          uses: docker/login-action@v1
+          if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          with:
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+
+        - name: Login To GitHub
+          uses: docker/login-action@v1
+          if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.CR_PAT }}
+
+        - name: Login To GitLab
+          uses: docker/login-action@v1
+          if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          with:
+            registry: registry.gitlab.com
+            username: ${{ secrets.GITLAB_USER }}
+            password: ${{ secrets.GITLAB_TOKEN }}
+
+        - name: Docker Meta
+          id: meta
+          uses: docker/metadata-action@v3
+          with:
+            images: cyb3rjak3/html5validator,ghcr.io/cyb3r-jak3/html5validator,registry.gitlab.com/cyb3r-jak3/html5validator-docker
+            labels: |
+              org.label-schema.vcs-url=https://github.com/Cyb3r-Jak3/html5validator-docker.git
+              maintainer=Cyb3r Jak3 jake@jwhite.network
+              org.opencontainers.image.vendor=cyb3rjak3
+        
+        -
+          name: Build
+          uses: docker/bake-action@v1
+          with:
+            files: |
+              ./docker-bake.hcl
+              ${{ steps.meta.outputs.bake-file }}
+            targets: image-all
+            push: ${{ startsWith(github.ref, 'refs/tags/v') }}
