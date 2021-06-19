@@ -27,4 +27,4 @@ jobs:
           load: true
 
       - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
-        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
+        run: docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
