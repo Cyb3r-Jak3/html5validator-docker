@@ -126,7 +126,7 @@ target "source-alpine-release" {
         "linux/ppc64le",
     ]
 }
-target "pypy-slim-release" {
+target "pypi-slim-release" {
     inherits = ["pypi-slim", "docker-metadata-action"]
     platforms = [
         "linux/amd64",
