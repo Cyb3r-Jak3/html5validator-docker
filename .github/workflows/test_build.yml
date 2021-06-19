@@ -3,15 +3,16 @@ name: Test Build
 on: 
   push:
     paths:
-      - Dockerfiles/**
+      - dockerfiles/**
       - .github/workflows/test_build.yml
   
 jobs:
   MatrixRun:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        buildType: ["Source", "PyPi", "Experimental"]
+        buildType: ["source", "pypi", "experimental"]
         buildArch: ["slim", "alpine"]
     steps:
       - uses: actions/checkout@v2.3.4

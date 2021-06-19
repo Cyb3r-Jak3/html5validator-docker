@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - Dockerfiles/**
+      - dockerfiles/**
       - .github/workflows/publish.yml
     tags:
       - "v*"
