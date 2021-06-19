@@ -5,6 +5,6 @@ RUN mkdir -p /usr/share/man/man1/ \
          openjdk8-jre \
     && rm -rf /var/cache/apk/*
 
-RUN pip --no-cache-dir install html5validator
+RUN pip --no-cache-dir --disable-pip-version-check install html5validator
 
 RUN apk del py-pip
