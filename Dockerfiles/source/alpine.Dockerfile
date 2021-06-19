@@ -1,5 +1,7 @@
 FROM python:3.8.6-alpine3.12
 
+ARG GIT_URL=https://github.com/svenkreiss/html5validator.git
+
 RUN mkdir -p /usr/share/man/man1/ \
     && apk add --no-cache py-pip \
          openjdk8-jre \
@@ -7,7 +9,7 @@ RUN mkdir -p /usr/share/man/man1/ \
     && rm -rf /var/cache/apk/*
 
 RUN pip --no-cache-dir --disable-pip-version-check install setuptools \
-    && git clone https://github.com/svenkreiss/html5validator.git \
+    && git clone ${GIT_URL} \
     && cd html5validator \
     && python setup.py install \
     && cd .. \

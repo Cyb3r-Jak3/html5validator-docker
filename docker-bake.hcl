@@ -1,7 +1,6 @@
-variable "DEFAULT_TAG" {
-  default = "html5validator:local"
+variable "EXPERIMENTAL_URL" {
+    default = "https://github.com/Cyb3r-Jak3/html5validator.git"
 }
-
 group "release" {
     targets = [
         "source-slim-release",
@@ -81,7 +80,10 @@ target "pypi-alpine" {
 } 
 
 target "experimental-slim" {
-    dockerfile = "./Dockerfiles/experimental/slim.Dockerfile"
+    dockerfile = "./Dockerfiles/source/slim.Dockerfile"
+    args = {
+        GIT_URL = "${EXPERIMENTAL_URL}"
+    }
     tags = [
         "cyb3rjak3/html5validator:experimental-slim",
         "ghcr.io/cyb3r-jak3/html5validator:experimental-slim",
@@ -90,7 +92,10 @@ target "experimental-slim" {
 }
 
 target "experimental-alpine" {
-    dockerfile = "./Dockerfiles/experimental/alpine.Dockerfile"
+    dockerfile = "./Dockerfiles/source/alpine.Dockerfile"
+    args = {
+        GIT_URL = "${EXPERIMENTAL_URL}"
+    }
     tags = [
         "cyb3rjak3/html5validator:experimental",
         "cyb3rjak3/html5validator:experimental-alpine",
