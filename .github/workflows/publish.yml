@@ -55,6 +55,7 @@ jobs:
               maintainer=Cyb3r Jak3 jake@jwhite.network
               org.opencontainers.image.vendor=cyb3rjak3
         
+        - uses: actions/checkout@v2.3.4
         -
           name: Build
           uses: docker/bake-action@v1
