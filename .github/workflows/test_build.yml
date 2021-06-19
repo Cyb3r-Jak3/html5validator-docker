@@ -3,7 +3,7 @@ name: Test Build
 on: 
   push:
     paths:
-      - dockerfiles/**
+      - Dockerfiles/**
       - .github/workflows/test_build.yml
   
 jobs:
@@ -25,7 +25,5 @@ jobs:
           targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
           push: false
           load: true
-      - name: List Images
-        run: docker image ls
-      # - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
-      #   run: docker run --rm -i -v $(pwd)/tests:/tests/ ghcr.io/cyb3r-jak3/:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
+      - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
+        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
