@@ -26,13 +26,5 @@ jobs:
           push: false
           load: true
 
-      # - name: Setup Build ARG
-      #   if: ${{ matrix.buildType == "experimental" }}
-      #   run: |
-      #     --
-
-      # - name: Build ${{ matrix.buildType }}-${{ matrix.buildArch }}
-      #   run: docker build --file Dockerfiles/${{ matrix.buildType }}/${{ matrix.buildArch }}.Dockerfile --tag ${{ matrix.buildType }}:${{ matrix.buildArch }} .
-
-      - name: Run Source-Alpine Docker
-        run: docker run --rm -i -v $(pwd)/tests:/tests/ ${{ matrix.buildType }}:${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
+      - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
+        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/${{ matrix.buildType }}:${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG
