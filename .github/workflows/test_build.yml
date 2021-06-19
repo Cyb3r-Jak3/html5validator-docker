@@ -25,5 +25,6 @@ jobs:
           targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
           push: false
           load: true
+
       - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
         run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/valid --log DEBUG

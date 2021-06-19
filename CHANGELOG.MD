@@ -1,10 +1,15 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project will be documented in this file. Headers that only have a date mean that there was no release.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 <!-- ## [Unreleased] -->
+
+## [2.1.0] - 2021-06-17
+
+- Switched to using docker-bake for building
+- Remove experimental Docker files in favor of build arg
 
 ## 2021-05-27
 
