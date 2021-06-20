@@ -5,8 +5,9 @@ on:
     branches:
       - master
     paths:
-      - dockerfiles/**
-      - .github/workflows/publish.yml
+      - 'Dockerfiles/**'
+      - '.github/workflows/publish.yml'
+      - 'docker-bake.hcl'
     tags:
       - "v*"
   pull_request:

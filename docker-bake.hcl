@@ -57,7 +57,7 @@ target "source-alpine" {
         "ghcr.io/cyb3r-jak3/html5validator:source-alpine-${DOCKER_META_VERSION}",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source=${DOCKER_META_VERSION}",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine"
+        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine-${DOCKER_META_VERSION}"
     ]
 
