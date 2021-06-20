@@ -59,7 +59,7 @@ jobs:
               org.opencontainers.image.vendor=cyb3rjak3
 
         - name: Remove Tags
-          run: sed -i 's/tags//' ${{ steps.meta.outputs.bake-file }}
+          run: sed -i 's/\[[^][]*\]//g' ${{ steps.meta.outputs.bake-file }}
 
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1.2.0
