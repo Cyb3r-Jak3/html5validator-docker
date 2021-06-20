@@ -7,6 +7,7 @@ on:
     paths:
       - Dockerfiles/**
       - .github/workflows/test_build.yml
+      - docker-bake.hcl
   
 jobs:
   Build:
