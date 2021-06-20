@@ -49,73 +49,17 @@ You can pull the image from either Docker Hub, GitHub, or GitLab. Currently the 
 
 To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` becomes `cyb3rjak3/html5validator:latest-slim`.
 
-### Docker
-
-You use this the same way you use any docker image.
-
-```bash
-docker pull cyb3rjak3/html5validator:latest
-```
-
-To use the source image:
-
-```bash
-docker pull cyb3rjak3/html5validator:source
-```
-
-To use the experimental image:
-
-```bash
-docker pull cyb3rjak3/html5validator:experimental
-```
-
-### GitHub
-
-This project uses GitHub's container registry so you can use this the in a similar way to the docker images.
-
-```bash
-docker pull ghcr.io/cyb3rjak3/html5validator:latest
-```
-
-To use the source image:
-
-```bash
-docker pull ghcr.io/cyb3rjak3/html5validator:source
-```
-
-To use the experimental image:
-
-```bash
-docker pull ghcr.io/cyb3rjak3/html5validator:experimental
-```
-
-Read more about GitHub's container registry [here](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry)
-
-### GitLab
-
-This project uses GitLabs's container registry so you can use this the in a similar way to the docker images.
-
-```bash
-docker pull registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest
-```
-
-To use the source image:
-
-```bash
-docker pull registry.gitlab.com/cyb3r-jak3/html5validator-docker:source
-```
-
-To use the experimental image:
-
-```bash
-docker pull registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental
-```
-
-Read more about GitLab's container registry [here](https://docs.gitlab.com/ee/user/packages/container_registry/index.html)
+|              | [Docker](https://hub.docker.com/r/cyb3rjak3/html5validator) | [GitHub](https://github.com/Cyb3r-Jak3/html5validator-docker/pkgs/container/html5validator) | [Gitlab](https://gitlab.com/Cyb3r-Jak3/html5validator-docker/container_registry/1945095) |
+|--------------|-------------------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| pypi         | cyb3rjak3/html5validator:pypi                               | ghcr.io/cyb3rjak3/html5validator:pypi                                                       | registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi                                |
+| source       | cyb3rjak3/html5validator:source                             | ghcr.io/cyb3rjak3/html5validator:source                                                     | registry.gitlab.com/cyb3r-jak3/html5validator-docker:source                              |
+| experimental | cyb3rjak3/html5validator:experimental                       | ghcr.io/cyb3rjak3/html5validator:experimental                                               | registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental                        |
 
 ## Tags
 
 There are currently three tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from source, the PyPI installs the packaged version, and the experimental branch builds from my fork of html5validator. The PyPi tag is more stable than the source branch, thus it is the latest tag.
 
-HTML5Validator latest tag: [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/svenkreiss/html5validator)](https://github.com/svenkreiss/html5validator/releases/latest)  
-Pypi Version: [![PyPI](https://img.shields.io/pypi/v/html5validator)](https://pypi.org/project/html5validator/)
+### Version Tags
+
+Starting with v2.2.0 there is a version suffix to pin to a specific version. Example: `cyb3rjak3/html5validator:source-v2.2.0` or `cyb3rjak3/html5validator:source-slim-v2.2.0`
+
