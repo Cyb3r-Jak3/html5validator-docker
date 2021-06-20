@@ -60,7 +60,7 @@ jobs:
 
           # Handling the version tags in the bake file with an arg
         - name: Remove Tags
-          run: jq 'del(.target."docker-metadata-action".tags)' ${{ steps.meta.outputs.bake-file }}
+          run: cat <<< $(jq 'del(.target."docker-metadata-action".tags)' ${{ steps.meta.outputs.bake-file }}) > ${{ steps.meta.outputs.bake-file }}
 
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1.2.0
