@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 <!-- ## [Unreleased] -->
 
-## [2.1.0] - 2021-06-17
+## [v2.2.0] - 2021-06-17
 
 - Switched to using docker-bake for building
 - Remove experimental Docker files in favor of build arg
@@ -23,7 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - GitLab container images
 
-## 2021-02-21
+## [v2.1.0] - 2021-02-21
 
 ### Added
 
