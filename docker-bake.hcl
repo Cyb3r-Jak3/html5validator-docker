@@ -143,7 +143,6 @@ target "experimental-alpine" {
 
 // Special target: https://github.com/docker/metadata-action#bake-definition
 target "docker-metadata-action" {
-    tags = []
     platforms = [
         "linux/amd64",
         "linux/arm/v6",

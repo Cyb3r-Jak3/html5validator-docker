@@ -58,8 +58,9 @@ jobs:
               maintainer=Cyb3r Jak3 jake@jwhite.network
               org.opencontainers.image.vendor=cyb3rjak3
 
-        # - name: Remove Tags
-        #   run: sed -i 's/\[[^][]*\]//g' ${{ steps.meta.outputs.bake-file }}
+          # Handling the version tags in the bake file with an arg
+        - name: Remove Tags
+          run: jq 'del(.target."docker-metadata-action".tags)' ${{ steps.meta.outputs.bake-file }}
 
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v1.2.0
