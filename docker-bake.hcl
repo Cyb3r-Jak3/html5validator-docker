@@ -32,7 +32,13 @@ group "experimental" {
     targets = ["experimental-slim", "experimental-alpine"]
 }
 
+target "cache" {
+    cache-to=["type=local,dest=/tmp/buildx-cache"]
+    cache-from=["type=local,src=/tmp/buildx-cache"]
+}
+
 target "source-slim" {
+    inherits = ["cache"]
     dockerfile = "./Dockerfiles/source/slim.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:source-slim",
@@ -45,6 +51,7 @@ target "source-slim" {
 }
 
 target "source-alpine" {
+    inherits = ["cache"]
     dockerfile = "./Dockerfiles/source/alpine.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:source",
@@ -64,6 +71,7 @@ target "source-alpine" {
 }
 
 target "pypi-slim" {
+    inherits = ["cache"]
     dockerfile = "./Dockerfiles/pypi/slim.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:latest-slim",
@@ -79,6 +87,7 @@ target "pypi-slim" {
 }
 
 target "pypi-alpine" {
+    inherits = ["cache"]
     dockerfile = "./Dockerfiles/pypi/alpine.Dockerfile"
     tags = [
         "cyb3rjak3/html5validator:latest",
@@ -105,6 +114,7 @@ target "pypi-alpine" {
 } 
 
 target "experimental-slim" {
+    inherits = ["cache"]
     dockerfile = "./Dockerfiles/source/slim.Dockerfile"
     args = {
         GIT_URL = "${EXPERIMENTAL_URL}"
@@ -120,6 +130,7 @@ target "experimental-slim" {
 }
 
 target "experimental-alpine" {
+    inherits = ["cache"]
     dockerfile = "./Dockerfiles/source/alpine.Dockerfile"
     args = {
         GIT_URL = "${EXPERIMENTAL_URL}"
@@ -150,8 +161,6 @@ target "docker-metadata-action" {
         "linux/arm64",
         "linux/386",
     ]
-    cache-to=["type=local,dest=/tmp/buildx-cache"]
-    cache-from=["type=local,src=/tmp/buildx-cache"]
 }
 
 target "source-slim-release" {
