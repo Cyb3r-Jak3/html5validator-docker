@@ -33,8 +33,8 @@ group "experimental" {
 }
 
 target "cache" {
-    cache-to=["type=local,dest=/tmp/buildx-cache"]
-    cache-from=["type=local,src=/tmp/buildx-cache"]
+    cache-to=["type=local,dest=/tmp/.buildx-cache"]
+    cache-from=["type=local,src=/tmp/.buildx-cache"]
 }
 
 target "source-slim" {
