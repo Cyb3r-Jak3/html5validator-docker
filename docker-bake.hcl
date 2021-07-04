@@ -150,6 +150,8 @@ target "docker-metadata-action" {
         "linux/arm64",
         "linux/386",
     ]
+    cache-to=["type=local,dest=/tmp/buildx-cache"]
+    cache-from=["type=local,src=/tmp/buildx-cache"]
 }
 
 target "source-slim-release" {

@@ -18,6 +18,13 @@ jobs:
         buildType: ["source", "pypi", "experimental"]
         buildArch: ["slim", "alpine"]
     steps:
+      - name: Cache Docker layers
+        uses: actions/cache@v2.1.6
+        with:
+          path: /tmp/.buildx-cache
+          key: buildx-${{ matrix.buildType }}-${{ matrix.buildArch }}-${{ github.sha }}
+          restore-keys: buildx-${{ matrix.buildType }}-${{ matrix.buildArch }}
+
       - uses: actions/checkout@v2.3.4
 
       - name: Build Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}
