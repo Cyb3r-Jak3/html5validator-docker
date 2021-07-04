@@ -62,4 +62,3 @@ There are currently three tags for this image: `source`, `pypi`, and `experiment
 ### Version Tags
 
 Starting with v2.2.0 there is a version suffix to pin to a specific version. Example: `cyb3rjak3/html5validator:source-v2.2.0` or `cyb3rjak3/html5validator:source-slim-v2.2.0`
-

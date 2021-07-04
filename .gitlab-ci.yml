@@ -18,7 +18,7 @@ Main-Test:
     extends: .docker_build
     script:
         - docker build --file Dockerfiles/pypi/alpine.Dockerfile --tag html5validator:latest .
-        - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest html5validator --root /tests/valid --log DEBUG
+        - docker run --rm -i -v $(pwd)/tests:/tests/ html5validator:latest html5validator --root /tests/ --log DEBUG
 
 GitLab-Scanning:
     extends: .docker_build
