@@ -2,8 +2,8 @@ name: Test Build
 
 on: 
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - master
     tags-ignore:
       - '**'
     paths:
