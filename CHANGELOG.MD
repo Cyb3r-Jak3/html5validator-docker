@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file. Headers tha
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## 2021-07-05
+
+
+### Changed
+
+- Fix order for tag generation.
+
 <!-- ## [Unreleased] -->
 
 ## [v2.2.0] - 2021-06-17

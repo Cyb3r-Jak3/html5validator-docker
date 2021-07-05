@@ -36,8 +36,7 @@ jobs:
       - name: Build Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}
         uses: docker/bake-action@v1.5.0
         with:
-          files: |
-            ./docker-bake.hcl
+          files: ./docker-bake.hcl
           targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
           push: false
           load: true

@@ -58,11 +58,6 @@ jobs:
             maintainer=Cyb3r Jak3 jake@jwhite.network
             org.opencontainers.image.vendor=cyb3rjak3
 
-          # Handling the version tags in the bake file with an arg
-      - name: Remove Tags
-        # Hacky way to edit the bake file in place
-        run: cat <<< $(jq 'del(.target."docker-metadata-action".tags)' ${{ steps.meta.outputs.bake-file }}) > ${{ steps.meta.outputs.bake-file }}
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1.2.0
 
@@ -82,8 +77,8 @@ jobs:
         uses: docker/bake-action@v1.5.0
         with:
           files: |
-            ./docker-bake.hcl
             ${{ steps.meta.outputs.bake-file }}
+            ./docker-bake.hcl
           targets: release
           push: ${{ startsWith(github.ref, 'refs/tags/v') }}
           set: |
