@@ -21,18 +21,6 @@ jobs:
         buildArch: ["slim", "alpine"]
     steps:
 
-      - name: Docker Meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          flavor: |
-            latest=false
-          images: cyb3rjak3/html5validator,ghcr.io/cyb3r-jak3/html5validator,registry.gitlab.com/cyb3r-jak3/html5validator-docker
-          labels: |
-            org.label-schema.vcs-url=https://github.com/Cyb3r-Jak3/html5validator-docker.git
-            maintainer=Cyb3r Jak3 jake@jwhite.network
-            org.opencontainers.image.vendor=cyb3rjak3
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1.5.0  
 
@@ -48,9 +36,7 @@ jobs:
       - name: Build Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}
         uses: docker/bake-action@v1.5.0
         with:
-          files: |
-            ${{ steps.meta.outputs.bake-file }}
-            ./docker-bake.hcl
+          files: ./docker-bake.hcl
           targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
           push: false
           load: true
