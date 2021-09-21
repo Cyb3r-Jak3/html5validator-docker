@@ -2,7 +2,6 @@ FROM python:3.8-slim
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
-    && apt-get -qq upgrade \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -qq python3-pip default-jre \
     && rm -rf /var/lib/apt/lists/*
 

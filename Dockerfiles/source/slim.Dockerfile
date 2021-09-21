@@ -4,7 +4,6 @@ ARG GIT_URL=https://github.com/svenkreiss/html5validator.git
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
-    && apt-get -qq upgrade \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y git python3-pip default-jre \
     && rm -rf /var/lib/apt/lists/*
 
