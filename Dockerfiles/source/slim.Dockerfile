@@ -1,4 +1,4 @@
-FROM python:3.8.6-slim
+FROM python:3.8-slim
 
 ARG GIT_URL=https://github.com/svenkreiss/html5validator.git
 

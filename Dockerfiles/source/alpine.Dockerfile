@@ -1,4 +1,4 @@
-FROM python:3.8.6-alpine3.14
+FROM python:3.8-alpine
 
 ARG GIT_URL=https://github.com/svenkreiss/html5validator.git
 
