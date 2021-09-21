@@ -39,7 +39,3 @@ jobs:
 
       - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
         run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/ --log DEBUG
-
-      - uses: azure/container-scan@v0.1
-        with:
-          image-name: cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }}
