@@ -34,8 +34,8 @@ jobs:
           push: false
           load: true
           set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+            *.cache-from=type=gha,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
+            *.cache-to=type=gha,mode=max,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
 
       - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
         run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/ --log DEBUG
