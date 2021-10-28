@@ -54,7 +54,7 @@ target "source-alpine" {
 
 target "pypi-slim" {
     dockerfile = "./Dockerfiles/slim.Dockerfile"
-    target = "slim"
+    target = "pypi"
     tags = [
         "cyb3rjak3/html5validator:latest-slim",
         "cyb3rjak3/html5validator:pypi-slim",
