@@ -126,25 +126,24 @@ target "docker-metadata-action" {
 }
 
 target "source-slim-release" {
-    inherits = ["source-slim", "docker-metadata-action"]
+    inherits = ["docker-metadata-action", "source-slim"]
 }
 
 target "source-alpine-release" {
-    inherits = ["source-alpine", "docker-metadata-action"]
+    inherits = ["docker-metadata-action", "source-alpine"]
 }
 
 target "pypi-slim-release" {
-    inherits = ["pypi-slim", "docker-metadata-action"]
+    inherits = ["docker-metadata-action", "pypi-slim"]
 }
 
 target "pypi-alpine-release" {
-    inherits = ["pypi-alpine","docker-metadata-action"]
+    inherits = ["docker-metadata-action", "pypi-alpine"]
 }
 
 target "experimental-slim-release" {
-    inherits = ["experimental-slim", "docker-metadata-action"]
+    inherits = ["docker-metadata-action", "experimental-slim"]
 }
 
 target "experimental-alpine-release" {
-    inherits = ["experimental-alpine", "docker-metadata-action"]
-}
+    
