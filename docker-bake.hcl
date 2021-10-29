@@ -29,7 +29,8 @@ group "experimental" {
 }
 
 target "source-slim" {
-    dockerfile = "./Dockerfiles/source/slim.Dockerfile"
+    dockerfile = "./Dockerfiles/slim.Dockerfile"
+    target = "source"
     tags = [
         "cyb3rjak3/html5validator:source-slim",
         "ghcr.io/cyb3r-jak3/html5validator:source-slim",
@@ -38,7 +39,8 @@ target "source-slim" {
 }
 
 target "source-alpine" {
-    dockerfile = "./Dockerfiles/source/alpine.Dockerfile"
+    dockerfile = "./Dockerfiles/alpine.Dockerfile"
+    target = "source"
     tags = [
         "cyb3rjak3/html5validator:source",
         "cyb3rjak3/html5validator:source-alpine",
@@ -51,7 +53,8 @@ target "source-alpine" {
 }
 
 target "pypi-slim" {
-    dockerfile = "./Dockerfiles/pypi/slim.Dockerfile"
+    dockerfile = "./Dockerfiles/slim.Dockerfile"
+    target = "pypi"
     tags = [
         "cyb3rjak3/html5validator:latest-slim",
         "cyb3rjak3/html5validator:pypi-slim",
@@ -63,7 +66,8 @@ target "pypi-slim" {
 }
 
 target "pypi-alpine" {
-    dockerfile = "./Dockerfiles/pypi/alpine.Dockerfile"
+    dockerfile = "./Dockerfiles/alpine.Dockerfile"
+    target = "pypi"
     tags = [
         "cyb3rjak3/html5validator:latest",
         "cyb3rjak3/html5validator:pypi",
@@ -81,7 +85,8 @@ target "pypi-alpine" {
 } 
 
 target "experimental-slim" {
-    dockerfile = "./Dockerfiles/source/slim.Dockerfile"
+    dockerfile = "./Dockerfiles/slim.Dockerfile"
+    target = "source"
     args = {
         GIT_URL = "${EXPERIMENTAL_URL}"
     }
@@ -93,7 +98,8 @@ target "experimental-slim" {
 }
 
 target "experimental-alpine" {
-    dockerfile = "./Dockerfiles/source/alpine.Dockerfile"
+    dockerfile = "./Dockerfiles/alpine.Dockerfile"
+    target = "source"
     args = {
         GIT_URL = "${EXPERIMENTAL_URL}"
     }
