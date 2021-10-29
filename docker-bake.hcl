@@ -146,4 +146,5 @@ target "experimental-slim-release" {
 }
 
 target "experimental-alpine-release" {
-    
+    inherits = ["docker-metadata-action", "experimental-alpine"]
+} 
