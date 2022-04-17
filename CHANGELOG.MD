@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file. Headers tha
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 2021-10-28
+## [v4] 2022-04-17
+
+### Changed
+
+- Bumped to Python 3.10
+
+## [v3] 2021-10-28
 
 ### Changed
 
