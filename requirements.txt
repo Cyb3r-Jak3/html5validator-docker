@@ -1,0 +1,2 @@
+# Only used to track new releases
+html5validator==0.4.2

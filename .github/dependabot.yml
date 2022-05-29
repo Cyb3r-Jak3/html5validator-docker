@@ -11,6 +11,7 @@ updates:
         - "dependencies"
     reviewers:
         - "Cyb3r-Jak3"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -21,4 +22,16 @@ updates:
         - "dependencies"
     reviewers:
         - "Cyb3r-Jak3"
-    
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    labels:
+        - "dependencies"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "Cyb3r-Jak3"
+    commit-message:
+      prefix: "Pip Update"
+    reviewers:
+      - "Cyb3r-Jak3"
