@@ -3,7 +3,8 @@ name: Publish
 on:
   push:
     branches:
-      - master
+      # - master
+      - "**"
     paths:
       - 'Dockerfiles/**'
       - '.github/workflows/publish.yml'
