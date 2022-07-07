@@ -32,9 +32,10 @@ target "source-slim" {
     dockerfile = "./Dockerfiles/slim.Dockerfile"
     target = "source"
     tags = [
-        "cyb3rjak3/html5validator:source-slim",
-        "ghcr.io/cyb3r-jak3/html5validator:source-slim",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-slim",
+        // "cyb3rjak3/html5validator:source-slim",
+        // "ghcr.io/cyb3r-jak3/html5validator:source-slim",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-slim",
+        "docker.cyberjake.xyz/html5validator:source-slim"
     ]
 }
 
@@ -42,12 +43,14 @@ target "source-alpine" {
     dockerfile = "./Dockerfiles/alpine.Dockerfile"
     target = "source"
     tags = [
-        "cyb3rjak3/html5validator:source",
-        "cyb3rjak3/html5validator:source-alpine",
-        "ghcr.io/cyb3r-jak3/html5validator:source",
-        "ghcr.io/cyb3r-jak3/html5validator:source-alpine",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine",
+        // "cyb3rjak3/html5validator:source",
+        // "cyb3rjak3/html5validator:source-alpine",
+        // "ghcr.io/cyb3r-jak3/html5validator:source",
+        // "ghcr.io/cyb3r-jak3/html5validator:source-alpine",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine",
+        "docker.cyberjake.xyz/html5validator:source",
+        "docker.cyberjake.xyz/html5validator:source-alpine"
     ]
 
 }
@@ -56,12 +59,14 @@ target "pypi-slim" {
     dockerfile = "./Dockerfiles/slim.Dockerfile"
     target = "pypi"
     tags = [
-        "cyb3rjak3/html5validator:latest-slim",
-        "cyb3rjak3/html5validator:pypi-slim",
-        "ghcr.io/cyb3r-jak3/html5validator:latest-slim",
-        "ghcr.io/cyb3r-jak3/html5validator:pypi-slim",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-slim",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-slim",
+        // "cyb3rjak3/html5validator:latest-slim",
+        // "cyb3rjak3/html5validator:pypi-slim",
+        // "ghcr.io/cyb3r-jak3/html5validator:latest-slim",
+        // "ghcr.io/cyb3r-jak3/html5validator:pypi-slim",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-slim",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-slim",
+        "docker.cyberjake.xyz/html5validator:latest-slim",
+        "docker.cyberjake.xyz/html5validator:pypi-slim"
     ]
 }
 
@@ -69,18 +74,22 @@ target "pypi-alpine" {
     dockerfile = "./Dockerfiles/alpine.Dockerfile"
     target = "pypi"
     tags = [
-        "cyb3rjak3/html5validator:latest",
-        "cyb3rjak3/html5validator:pypi",
-        "cyb3rjak3/html5validator:latest-alpine",
-        "cyb3rjak3/html5validator:pypi-alpine",
-        "ghcr.io/cyb3r-jak3/html5validator:latest",
-        "ghcr.io/cyb3r-jak3/html5validator:latest-alpine",
-        "ghcr.io/cyb3r-jak3/html5validator:pypi",
-        "ghcr.io/cyb3r-jak3/html5validator:pypi-alpine",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-alpine",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-alpine",
+        // "cyb3rjak3/html5validator:latest",
+        // "cyb3rjak3/html5validator:pypi",
+        // "cyb3rjak3/html5validator:latest-alpine",
+        // "cyb3rjak3/html5validator:pypi-alpine",
+        // "ghcr.io/cyb3r-jak3/html5validator:latest",
+        // "ghcr.io/cyb3r-jak3/html5validator:latest-alpine",
+        // "ghcr.io/cyb3r-jak3/html5validator:pypi",
+        // "ghcr.io/cyb3r-jak3/html5validator:pypi-alpine",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-alpine",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-alpine",
+        "docker.cyberjake.xyz/html5validator:latest",
+        "docker.cyberjake.xyz/html5validator:pypi",
+        "docker.cyberjake.xyz/html5validator:latest-alpine",
+        "docker.cyberjake.xyz/html5validator:pypi-alpine"
     ]
 } 
 
@@ -91,9 +100,10 @@ target "experimental-slim" {
         GIT_URL = "${EXPERIMENTAL_URL}"
     }
     tags = [
-        "cyb3rjak3/html5validator:experimental-slim",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental-slim",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim",
+        // "cyb3rjak3/html5validator:experimental-slim",
+        // "ghcr.io/cyb3r-jak3/html5validator:experimental-slim",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim",
+        "docker.cyberjake.xyz/html5validator:experimental-slim",
     ]
 }
 
@@ -104,12 +114,14 @@ target "experimental-alpine" {
         GIT_URL = "${EXPERIMENTAL_URL}"
     }
     tags = [
-        "cyb3rjak3/html5validator:experimental",
-        "cyb3rjak3/html5validator:experimental-alpine",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental-alpine",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine",
+        // "cyb3rjak3/html5validator:experimental",
+        // "cyb3rjak3/html5validator:experimental-alpine",
+        // "ghcr.io/cyb3r-jak3/html5validator:experimental",
+        // "ghcr.io/cyb3r-jak3/html5validator:experimental-alpine",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental",
+        // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine",
+        "docker.cyberjake.xyz/html5validator:experimental",
+        "docker.cyberjake.xyz/html5validator:experimental-alpine"
     ]
 
 }
