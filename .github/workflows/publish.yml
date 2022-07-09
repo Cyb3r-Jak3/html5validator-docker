@@ -64,7 +64,7 @@ jobs:
           flavor: |
             latest=false
           # images: cyb3rjak3/html5validator,ghcr.io/cyb3r-jak3/html5validator,registry.gitlab.com/cyb3r-jak3/html5validator-docker,docker.cyberjake.xyz/html5validator
-          images: docker.cyberjake.xyz/html5validator
+          images: docker-nginx.cyberjake.xyz/html5validator
           labels: |
             org.label-schema.vcs-url=https://github.com/Cyb3r-Jak3/html5validator-docker.git
             maintainer=Cyb3r Jak3 git@cyberjake.xyz

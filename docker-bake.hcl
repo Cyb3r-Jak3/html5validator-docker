@@ -35,7 +35,7 @@ target "source-slim" {
         // "cyb3rjak3/html5validator:source-slim",
         // "ghcr.io/cyb3r-jak3/html5validator:source-slim",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-slim",
-        "docker.cyberjake.xyz/html5validator:source-slim"
+        "docker-nginx.cyberjake.xyz/html5validator:source-slim"
     ]
 }
 
@@ -49,8 +49,8 @@ target "source-alpine" {
         // "ghcr.io/cyb3r-jak3/html5validator:source-alpine",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine",
-        "docker.cyberjake.xyz/html5validator:source",
-        "docker.cyberjake.xyz/html5validator:source-alpine"
+        "docker-nginx.cyberjake.xyz/html5validator:source",
+        "docker-nginx.cyberjake.xyz/html5validator:source-alpine"
     ]
 
 }
@@ -65,8 +65,8 @@ target "pypi-slim" {
         // "ghcr.io/cyb3r-jak3/html5validator:pypi-slim",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-slim",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-slim",
-        "docker.cyberjake.xyz/html5validator:latest-slim",
-        "docker.cyberjake.xyz/html5validator:pypi-slim"
+        "docker-nginx.cyberjake.xyz/html5validator:latest-slim",
+        "docker-nginx.cyberjake.xyz/html5validator:pypi-slim"
     ]
 }
 
@@ -86,10 +86,10 @@ target "pypi-alpine" {
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-alpine",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-alpine",
-        "docker.cyberjake.xyz/html5validator:latest",
-        "docker.cyberjake.xyz/html5validator:pypi",
-        "docker.cyberjake.xyz/html5validator:latest-alpine",
-        "docker.cyberjake.xyz/html5validator:pypi-alpine"
+        "docker-nginx.cyberjake.xyz/html5validator:latest",
+        "docker-nginx.cyberjake.xyz/html5validator:pypi",
+        "docker-nginx.cyberjake.xyz/html5validator:latest-alpine",
+        "docker-nginx.cyberjake.xyz/html5validator:pypi-alpine"
     ]
 } 
 
@@ -103,7 +103,7 @@ target "experimental-slim" {
         // "cyb3rjak3/html5validator:experimental-slim",
         // "ghcr.io/cyb3r-jak3/html5validator:experimental-slim",
         // "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim",
-        "docker.cyberjake.xyz/html5validator:experimental-slim",
+        "docker-nginx.cyberjake.xyz/html5validator:experimental-slim",
     ]
 }
 
