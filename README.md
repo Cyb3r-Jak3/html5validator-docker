@@ -2,7 +2,7 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/cyb3rjak3/html5validator)](https://hub.docker.com/r/cyb3rjak3/html5validator)
 
-[![Actions Status](https://github.com/Cyb3r-Jak3/html5validator-docker/workflows/Docker%20CI/badge.svg)](https://github.com/Cyb3r-Jak3/html5validator-docker/actions) [![Actions Status](https://github.com/Cyb3r-Jak3/html5validator-docker/workflows/GitHub%20CI/badge.svg)](https://github.com/Cyb3r-Jak3/html5validator-docker/actions)
+[![Publish](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/publish.yml/badge.svg)](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/publish.yml) [![Test Build](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/test_build.yml/badge.svg)](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/test_build.yml)
 
 This is a docker image made to test HTML code. I developed it for [my website](https://www.jwhite.network) using GitLab pipelines. This will work for any sort of pipeline solution. It setups up a container that has [html5validator](https://github.com/svenkreiss/html5validator) installed, which saves time with the testing process.
 
