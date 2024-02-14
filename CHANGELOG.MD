@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. Headers tha
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v4.1.0] 2024-02-14
+
+### Changed
+
+- Use python version 3.12.2
 
 ## [v4.1.0] 2023-12-29
 

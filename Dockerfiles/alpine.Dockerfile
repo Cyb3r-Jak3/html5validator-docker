@@ -17,13 +17,13 @@ ARG GIT_URL=https://github.com/svenkreiss/html5validator.git
 
 RUN apk add --no-cache git
 
-RUN pip --no-cache-dir --disable-pip-version-check install setuptools \
+RUN pip --no-cache-dir --disable-pip-version-check install wheel setuptools \
     && git clone ${GIT_URL} \
     && cd html5validator \
     && python setup.py install \
     && cd .. \
     && rm -rf html5validator \
-    && pip uninstall --yes setuptools
+    && pip uninstall --yes wheel setuptools
 
 RUN apk del py-pip git \
     && rm -rf /var/cache/apk/*
