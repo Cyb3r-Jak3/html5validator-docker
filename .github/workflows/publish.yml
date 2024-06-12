@@ -82,3 +82,5 @@ jobs:
           set: |
             *.cache-from=type=gha,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
             *.cache-to=type=gha,mode=max,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
+        env:
+          DOCKER_META_VERSION: ${{ env.DOCKER_METADATA_OUTPUT_VERSION }}
