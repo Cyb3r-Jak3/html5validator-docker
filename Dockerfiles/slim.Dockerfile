@@ -1,4 +1,4 @@
-FROM python:3.12.4-slim as base
+FROM python:3.12.5-slim as base
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
