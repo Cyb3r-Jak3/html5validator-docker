@@ -42,6 +42,8 @@ target "source-slim" {
         "ghcr.io/cyb3r-jak3/html5validator:source-slim-${DOCKER_META_VERSION}",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-slim",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-slim-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:source-slim",
+        "mine.jfrog.cyberjake.xyz/html5validator:source-slim-${DOCKER_META_VERSION}",
     ]
 }
 
@@ -61,6 +63,10 @@ target "source-alpine" {
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-${DOCKER_META_VERSION}",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:source-alpine-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:source",
+        "mine.jfrog.cyberjake.xyz/html5validator:source-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:source-alpine",
+        "mine.jfrog.cyberjake.xyz/html5validator:source-alpine-${DOCKER_META_VERSION}",
     ]
 
 }
@@ -81,6 +87,10 @@ target "pypi-slim" {
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:latest-slim-${DOCKER_META_VERSION}",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-slim",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-slim-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:latest-slim",
+        "mine.jfrog.cyberjake.xyz/html5validator:pypi-slim",
+        "mine.jfrog.cyberjake.xyz/html5validator:latest-slim-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:pypi-slim-${DOCKER_META_VERSION}",
     ]
 }
 
@@ -109,6 +119,13 @@ target "pypi-alpine" {
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-${DOCKER_META_VERSION}",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-alpine",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:pypi-alpine-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:latest",
+        "mine.jfrog.cyberjake.xyz/html5validator:pypi",
+        "mine.jfrog.cyberjake.xyz/html5validator:pypi-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:latest-alpine",
+        "mine.jfrog.cyberjake.xyz/html5validator:latest-alpine-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:pypi-alpine",
+        "mine.jfrog.cyberjake.xyz/html5validator:pypi-alpine-${DOCKER_META_VERSION}",
     ]
 } 
 
@@ -125,6 +142,8 @@ target "experimental-slim" {
         "ghcr.io/cyb3r-jak3/html5validator:experimental-slim-${DOCKER_META_VERSION}",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:experimental-slim",
+        "mine.jfrog.cyberjake.xyz/html5validator:experimental-slim-${DOCKER_META_VERSION}",
     ]
 }
 
@@ -147,6 +166,10 @@ target "experimental-alpine" {
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-${DOCKER_META_VERSION}",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine",
         "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:experimental",
+        "mine.jfrog.cyberjake.xyz/html5validator:experimental-${DOCKER_META_VERSION}",
+        "mine.jfrog.cyberjake.xyz/html5validator:experimental-alpine",
+        "mine.jfrog.cyberjake.xyz/html5validator:experimental-alpine-${DOCKER_META_VERSION}",
     ]
 
 }
