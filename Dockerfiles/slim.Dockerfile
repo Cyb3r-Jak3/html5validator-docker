@@ -1,25 +1,25 @@
-FROM python:3.12.7-slim as base
+FROM python:3.12.7-slim AS base
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -qq python3-pip default-jre
 
-FROM base as pypi
+FROM base AS pypi
 
-RUN pip --no-cache-dir --disable-pip-version-check install html5validator
+RUN --mount=type=cache,target=/root/.cache/pip pip --disable-pip-version-check install html5validator
 
 RUN DEBIAN_FRONTEND=noninteractive apt remove -y python3-pip \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-FROM base as source
+FROM base AS source
 
 ARG GIT_URL=https://github.com/svenkreiss/html5validator.git
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir --disable-pip-version-check wheel setuptools \
+RUN --mount=type=cache,target=/root/.cache/pip pip install --disable-pip-version-check wheel setuptools \
     && git clone ${GIT_URL} \
     && cd html5validator \
     && python setup.py install \
