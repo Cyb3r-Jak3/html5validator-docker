@@ -1,4 +1,4 @@
-FROM python:3.12.7-slim AS base
+FROM python:3.12-slim AS base
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
@@ -6,7 +6,7 @@ RUN mkdir -p /usr/share/man/man1/ \
 
 FROM base AS pypi
 
-RUN --mount=type=cache,target=/root/.cache/pip pip --disable-pip-version-check install html5validator
+RUN --mount=type=cache,target=/root/.cache/pip pip --disable-pip-version-check install html5validator-2
 
 RUN DEBIAN_FRONTEND=noninteractive apt remove -y python3-pip \
     && apt autoremove -y \
@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt remove -y python3-pip \
 
 FROM base AS source
 
-ARG GIT_URL=https://github.com/svenkreiss/html5validator.git
+ARG GIT_URL=https://github.com/Cyb3r-Jak3/html5validator.git
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y git \
     && rm -rf /var/lib/apt/lists/*
@@ -22,7 +22,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y gi
 RUN --mount=type=cache,target=/root/.cache/pip pip install --disable-pip-version-check wheel setuptools \
     && git clone ${GIT_URL} \
     && cd html5validator \
-    && python setup.py install \
+    && pip install . \
     && cd .. \
     && rm -rf html5validator \
     && pip uninstall --yes wheel setuptools
