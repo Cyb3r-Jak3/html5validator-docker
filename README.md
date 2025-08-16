@@ -24,8 +24,6 @@ html_test:
     - html5validator --root public/ --also-check-css --log INFO
 ```
 
-Which is used by this [project](.gitlab-ci.yml)
-
 ### GitHub Action
 
 For GitHub Actions, please use the action that I have built here: [HTML5 Validator](https://github.com/marketplace/actions/html5-validator)
@@ -45,7 +43,7 @@ docker run --rm -i -v $(pwd):/mnt -w /mnt cyb3rjak3/html5validator:latest-alpine
 
 ## Sources
 
-You can pull the image from either Docker Hub, GitHub, or GitLab. Currently the default images are based off of `python:3.9-alpine` there are images available using `python:3.9-slim`.
+You can pull the image from either Docker Hub, GitHub, or GitLab. Currently the default images are based off of `python:3.12-alpine` there are images available using `python:3.12-slim`.
 
 To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` becomes `cyb3rjak3/html5validator:latest-slim`.
 
@@ -60,4 +58,4 @@ To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rja
 > [!WARNING]  
 > `experimental` has been deprecated with release of v5. This is because source now used my fork.
 
-There are currently two tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from [source](https://github.com/Cyb3r-Jak3/html5validator), the PyPI installs the packaged version. The PyPi tag is more stable than the source branch, thus it is the latest tag.
+There are currently two tags for this image: `source`, and `pypi` The source tag involves building html5validator from [source](https://github.com/Cyb3r-Jak3/html5validator), the PyPI installs the packaged version. The PyPi tag is more stable than the source branch, thus it is the latest tag.
