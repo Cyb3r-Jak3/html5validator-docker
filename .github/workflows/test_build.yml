@@ -29,6 +29,7 @@ jobs:
       - name: Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}
         uses: docker/bake-action@37816e747588cb137173af99ab33873600c46ea8 # v6.8.0
         with:
+          source: .
           files: ./docker-bake.hcl
           targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
           push: false
