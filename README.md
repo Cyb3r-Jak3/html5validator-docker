@@ -4,7 +4,7 @@
 
 [![Publish](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/publish.yml/badge.svg)](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/publish.yml) [![Test Build](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/test_build.yml/badge.svg)](https://github.com/Cyb3r-Jak3/html5validator-docker/actions/workflows/test_build.yml)
 
-This is a docker image made to test HTML code. I developed it for [my website](https://www.jwhite.network) using GitLab pipelines. This will work for any sort of pipeline solution. It setups up a container that has [html5validator](https://github.com/svenkreiss/html5validator) installed, which saves time with the testing process.
+This is a docker image made to test HTML code. I developed it for [my website](https://cyberjake.xyz) using GitHub Actions. This will work for any sort of pipeline solution. It setups up a container that has [html5validator](https://github.com/Cyb3r-Jak3/html5validator-2) (>= 5) [html5validator](https://github.com/svenkreiss/html5validator) (< 5) installed, which saves time with the testing process.
 
 There are images available through GitHub, Docker Hub or GitLab.
 
@@ -19,12 +19,10 @@ Using the source of your choosing you will want something like:
 ```yaml
 html_test:
   stage: test
-  image: cyb3rjak3/html5validator:latest-alpine
+  image: gitlab.com/Cyb3r-Jak3/html5validator-docker:latest-alpine
   script:
     - html5validator --root public/ --also-check-css --log INFO
 ```
-
-Which is used by this [project](.gitlab-ci.yml)
 
 ### GitHub Action
 
@@ -45,7 +43,7 @@ docker run --rm -i -v $(pwd):/mnt -w /mnt cyb3rjak3/html5validator:latest-alpine
 
 ## Sources
 
-You can pull the image from either Docker Hub, GitHub, or GitLab. Currently the default images are based off of `python:3.9-alpine` there are images available using `python:3.9-slim`.
+You can pull the image from either Docker Hub, GitHub, or GitLab. Currently the default images are based off of `python:3.12-alpine` there are images available using `python:3.12-slim`.
 
 To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rjak3/html5validator:latest` becomes `cyb3rjak3/html5validator:latest-slim`.
 
@@ -57,4 +55,7 @@ To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rja
 
 ## Tags
 
-There are currently three tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from [source](https://github.com/svenkreiss/html5validator), the PyPI installs the packaged version, and the experimental branch builds from my fork of [html5validator](https://github.com/Cyb3r-Jak3/html5validator). The PyPi tag is more stable than the source branch, thus it is the latest tag.
+> [!WARNING]  
+> `experimental` has been deprecated with release of v5. This is because source now used my fork.
+
+There are currently two tags for this image: `source`, and `pypi` The source tag involves building html5validator from [source](https://github.com/Cyb3r-Jak3/html5validator), the PyPI installs the packaged version. The PyPi tag is more stable than the source branch, thus it is the latest tag.

@@ -12,12 +12,12 @@ on:
       - docker-bake.hcl
   
 jobs:
-  Build:
+  Test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        buildType: ["source", "pypi", "experimental"]
+        buildType: ["source", "pypi"]
         buildArch: ["slim", "alpine"]
     steps:
 
@@ -33,9 +33,11 @@ jobs:
           targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
           push: false
           load: true
-          set: |
-            *.cache-from=type=gha,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
-            *.cache-to=type=gha,mode=max,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
+          no-cache: true
+        env:
+          DOCKER_BUILD_SUMMARY: false
 
       - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
-        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/ --log DEBUG
+        run: |
+          docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/ --log DEBUG
+          docker run --rm -i cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --check-hash
