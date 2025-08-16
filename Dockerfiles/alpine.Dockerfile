@@ -2,7 +2,7 @@ FROM python:3.12-alpine AS base
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apk add --no-cache py-pip \
-         openjdk8-jre \
+         openjdk11-jre \
     && rm -rf /var/cache/apk/*
 
 FROM base AS pypi
