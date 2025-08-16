@@ -8,24 +8,19 @@ group "release" {
         "source-alpine-release",
         "pypi-slim-release",
         "pypi-alpine-release",
-        "experimental-slim",
-        "experimental-alpine"
     ]
 }
 
 group "all" {
-    targets = ["slim","pypi","experimental"]
+    targets = ["slim","pypi",]
 }
+
 group "slim" {
     targets = ["source-slim", "source-alpine"]
 }
 
 group "pypi" {
     targets = ["pypi-slim", "pypi-alpine"]
-}
-
-group "experimental" {
-    targets = ["experimental-slim", "experimental-alpine"]
 }
 
 target "source-slim" {
@@ -112,7 +107,10 @@ target "pypi-alpine" {
 target "docker-metadata-action" {
     platforms = [
         "linux/amd64",
+        "linux/s390x",
+        "linux/riscv64",
         "linux/arm64",
+        "linux/ppc64le",
     ]
 }
 
