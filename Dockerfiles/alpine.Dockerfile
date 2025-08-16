@@ -1,16 +1,12 @@
 FROM python:3.12-alpine AS base
 
-RUN wget -P /etc/apk/keys/ \
-       https://cdn.azul.com/public_keys/alpine-signing@azul.com-5d5dc44c.rsa.pub \
-    && echo "https://repos.azul.com/zulu/alpine" | tee -a /etc/apk/repositories
-
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
 	--mount=type=cache,target=/var/lib/apk,sharing=locked \
     mkdir -p /usr/share/man/man1/ \
     && apk upgrade \
     && apk add \
         py-pip \
-        zulu21-jdk \
+        openjdk21 \
     && rm -rf /var/cache/apk/*
 
 FROM base AS pypi
