@@ -1,8 +1,6 @@
 FROM python:3.12-slim AS base
 
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    mkdir -p /usr/share/man/man1/ \
+RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -qq python3-pip default-jre
 
@@ -17,10 +15,7 @@ FROM base AS source
 
 ARG GIT_URL=https://github.com/Cyb3r-Jak3/html5validator.git
 
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y git \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get install --no-install-recommends -y git
 
 RUN --mount=type=cache,target=/root/.cache/pip pip install --disable-pip-version-check wheel setuptools \
     && git clone ${GIT_URL} \

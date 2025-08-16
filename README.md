@@ -57,4 +57,7 @@ To use the slim based images add `-slim` to the tag you are using, i.e. `cyb3rja
 
 ## Tags
 
-There are currently three tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from [source](https://github.com/svenkreiss/html5validator), the PyPI installs the packaged version, and the experimental branch builds from my fork of [html5validator](https://github.com/Cyb3r-Jak3/html5validator). The PyPi tag is more stable than the source branch, thus it is the latest tag.
+> [!WARNING]  
+> `experimental` has been deprecated with release of v5. This is because source now used my fork.
+
+There are currently two tags for this image: `source`, `pypi`, and `experimental`. The source tag involves building html5validator from [source](https://github.com/Cyb3r-Jak3/html5validator), the PyPI installs the packaged version. The PyPi tag is more stable than the source branch, thus it is the latest tag.

@@ -3,6 +3,7 @@ FROM python:3.12-alpine AS base
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
 	--mount=type=cache,target=/var/lib/apk,sharing=locked \
     mkdir -p /usr/share/man/man1/ \
+    && apk update \
     && apk upgrade \
     && apk add \
         py-pip \

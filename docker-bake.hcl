@@ -1,7 +1,3 @@
-variable "EXPERIMENTAL_URL" {
-    default = "https://github.com/Cyb3r-Jak3/html5validator.git"
-}
-
 variable "DOCKER_META_VERSION" {
     default = "dev"
 }
@@ -112,53 +108,11 @@ target "pypi-alpine" {
     ]
 } 
 
-target "experimental-slim" {
-    dockerfile = "./Dockerfiles/slim.Dockerfile"
-    target = "source"
-    args = {
-        GIT_URL = "${EXPERIMENTAL_URL}"
-    }
-    tags = [
-        "cyb3rjak3/html5validator:experimental-slim",
-        "cyb3rjak3/html5validator:experimental-slim-${DOCKER_META_VERSION}",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental-slim",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental-slim-${DOCKER_META_VERSION}",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-slim-${DOCKER_META_VERSION}"
-    ]
-}
-
-target "experimental-alpine" {
-    dockerfile = "./Dockerfiles/alpine.Dockerfile"
-    target = "source"
-    args = {
-        GIT_URL = "${EXPERIMENTAL_URL}"
-    }
-    tags = [
-        "cyb3rjak3/html5validator:experimental",
-        "cyb3rjak3/html5validator:experimental-${DOCKER_META_VERSION}",
-        "cyb3rjak3/html5validator:experimental-alpine",
-        "cyb3rjak3/html5validator:experimental-alpine-${DOCKER_META_VERSION}",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental-${DOCKER_META_VERSION}",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental-alpine",
-        "ghcr.io/cyb3r-jak3/html5validator:experimental-alpine-${DOCKER_META_VERSION}",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-${DOCKER_META_VERSION}",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine",
-        "registry.gitlab.com/cyb3r-jak3/html5validator-docker:experimental-alpine-${DOCKER_META_VERSION}"
-    ]
-
-}
-
 // Special target: https://github.com/docker/metadata-action#bake-definition
 target "docker-metadata-action" {
     platforms = [
         "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
         "linux/arm64",
-        "linux/386",
     ]
 }
 
@@ -177,11 +131,3 @@ target "pypi-slim-release" {
 target "pypi-alpine-release" {
     inherits = ["docker-metadata-action", "pypi-alpine"]
 }
-
-target "experimental-slim-release" {
-    inherits = ["docker-metadata-action", "experimental-slim"]
-}
-
-target "experimental-alpine-release" {
-    inherits = ["docker-metadata-action", "experimental-alpine"]
-} 

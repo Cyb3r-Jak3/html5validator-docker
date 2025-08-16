@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        buildType: ["source", "pypi", "experimental"]
+        buildType: ["source", "pypi"]
         buildArch: ["slim", "alpine"]
     steps:
 
