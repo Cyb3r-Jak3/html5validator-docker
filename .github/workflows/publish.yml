@@ -72,7 +72,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build
-        uses: docker/bake-action@v5
+        uses: docker/bake-action@37816e747588cb137173af99ab33873600c46ea8 # v6.8.0
         with:
           files: |
             ${{ steps.meta.outputs.bake-file }}
