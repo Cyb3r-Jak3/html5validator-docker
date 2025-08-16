@@ -26,20 +26,18 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - name: Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}-${{ github.sha }}
+      - name: Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}
         uses: docker/bake-action@v5
         with:
           files: ./docker-bake.hcl
           targets: ${{ matrix.buildType }}-${{ matrix.buildArch }}
           push: false
           load: true
-          set: |
-            *.cache-from=type=gha,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
-            *.cache-to=type=gha,mode=max,scope=buildx-${{matrix.buildType}}-${{matrix.buildArch}}
+          no-cache: true
         env:
           DOCKER_BUILD_SUMMARY: false
 
       - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
         run: |
-          docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }}-${{ github.sha }} html5validator --root /tests/ --log DEBUG
-          docker run --rm -i cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }}-${{ github.sha }} html5validator --check-hash
+          docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/ --log DEBUG
+          docker run --rm -i cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --check-hash
