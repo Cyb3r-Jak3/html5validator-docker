@@ -40,4 +40,6 @@ jobs:
           DOCKER_BUILD_SUMMARY: false
 
       - name: Run ${{ matrix.buildType }}-${{ matrix.buildArch }}
-        run: docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/ --log DEBUG
+        run: |
+          docker run --rm -i -v $(pwd)/tests:/tests/ cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --root /tests/ --log DEBUG
+          docker run --rm -i cyb3rjak3/html5validator:${{ matrix.buildType }}-${{ matrix.buildArch }} html5validator --check-hash
