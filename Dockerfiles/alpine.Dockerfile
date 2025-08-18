@@ -1,4 +1,4 @@
-FROM python:3.12-alpine@sha256:02a73ead8397e904cea6d17e18516f1df3590e05dc8823bd5b1c7f849227d272 AS base
+FROM python:3.13.7-alpine@sha256:587df003ff48316a56a0ddac50e1e2b64dfeca281f0c071b91920895a65b12d2 AS base
 
 RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
 	--mount=type=cache,target=/var/lib/apk,sharing=locked \
