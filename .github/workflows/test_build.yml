@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Bake ${{ matrix.buildType }}-${{ matrix.buildArch }}
-        uses: docker/bake-action@37816e747588cb137173af99ab33873600c46ea8 # v6.8.0
+        uses: docker/bake-action@3acf805d94d93a86cce4ca44798a76464a75b88c # v6.9.0
         with:
           source: .
           files: ./docker-bake.hcl
