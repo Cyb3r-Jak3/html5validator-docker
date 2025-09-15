@@ -1,4 +1,4 @@
-FROM python:3.13-slim@sha256:27f90d79cc85e9b7b2560063ef44fa0e9eaae7a7c3f5a9f74563065c5477cc24 AS base
+FROM python:3.13-slim@sha256:58c30f5bfaa718b5803a53393190b9c68bd517c44c6c94c1b6c8c172bcfad040 AS base
 
 RUN mkdir -p /usr/share/man/man1/ \
     && apt-get -qq update \
